@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "theatre.clients.size",
+      "type": "java.lang.String",
+      "description": "Description for theatre.clients.size."
+  }
+] }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+<p th:text="#{clients.message}"></p>
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{clients.name}"></th>
+        <th th:text="#{clients.surname}"></th>
+        <th th:text="#{clients.email}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client: ${clients.content}">
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.surname}"></td>
+        <td th:text="${client.email}"></td>
+
+    </tr>
+    </tbody>
+</table>
+<ul th:if="${clients.totalPages > 0}" class="pagination">
+    <li th:class="${clients.number - 1 >= 0} ? waves-effect : disabled"><a th:href="@{/clients(size=${clients.size}, page=${clients.number - 1})}"><i class="material-icons"> < </i></a></li>
+    <li th:each="pageNumber : ${pageNumbers}"
+        th:class="${pageNumber==clients.number} ? active">
+        <a th:href="@{/clients(size=${clients.size}, page=${pageNumber})}"
+           th:text="${pageNumber +1}" />
+    </li>
+    <li th:class="${clients.number + 1 < clients.totalPages} ? waves-effect : disabled"><a th:href="@{/clients(size=${clients.size}, page=${clients.number + 1})}"><i class="material-icons"> > </i></a></li>
+
+
+</ul>
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

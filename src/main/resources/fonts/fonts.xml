@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+    <fontFamily name="DejaVuSerif">
+        <normal><![CDATA[fonts/dejavuserif/DejaVuSerif.ttf]]></normal>
+        <bold><![CDATA[fonts/dejavuserif/DejaVuSerif-Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/dejavuserif/DejaVuSerif-Italic.ttf]]></italic>
+        <bolditalic><![CDATA[fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf]]></bolditalic>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+        <exportFonts/>
+    </fontFamily>
+</fontFamilies>

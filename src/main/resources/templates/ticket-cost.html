@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+<a th:href="@{/registration/places}" th:text="#{back}"></a>
+<p th:text="#{tickets.count}"></p> <p th:text="${simpleCountIntObjModel.getCount()}"></p>
+<p th:text="#{tickets.cost}"></p> <p th:text="${simpleCountIntObjModel.getCount()*350}"></p>
+
+
+<form th:action="@{/registration/ticket-cost}"
+      th:object="${simplePlaceObjModel}" method="post" class="form-horizontal">
+
+
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Забронировать</button>
+        </div>
+    </div>
+</form>
+
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование мест</title>
+</head>
+<body>
+
+<form th:action="@{/registration/places}"
+       th:object="${simplePlaceObj}" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="theatre">Выберете место</label>
+
+        <div th:each="row : ${rows}" id="theatre">
+            <span th:text="'Ряд ' + ${row} "/>
+            <span th:each="place: ${allPlaces}">
+            <input th:if="${place.getRow() == row && place.isOccupied() == false}" th:field="*{placeList}"
+                   type="checkbox"
+                   th:value="${place.id}"
+                   th:style="${place.isOccupied() == true ? 'background-color: #0b76ef' : ''}"
+                   th:disabled="${place.isOccupied() == true}"/>
+            <input th:if="${place.getRow() == row && place.isOccupied() == true}" type="checkbox"
+                   th:value="${place.id}"
+                   th:checked="${place.isOccupied()}"
+                   th:disabled="${place.isOccupied() == true}"/>
+            <span th:if="${place.getRow() == row}" th:text="${place.getPlace()}">Место</span>
+        </span>
+        </div>
+        <div style="margin-top: 10px" class="form-group">
+            <div class="col-sm-6 controls">
+                <button type="submit" class="btn btn-primary">Выбрать</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

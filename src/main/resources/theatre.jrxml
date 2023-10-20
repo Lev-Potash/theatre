@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="theatre_with_subreports" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4de2895f-3a5f-44c0-a1ba-751ca1655f3c">
+<!--    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>-->
+<!--    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>-->
+
+<!--    <style name="Base" isDefault="true" fontSize="8" pdfFontName="Courier New" pdfEncoding="UTF-8" isPdfEmbedded="true"/>-->
+
+<!--    <queryString language="SQL">-->
+<!--        <![CDATA[select * FROM boot.place pl -->
+<!--JOIN boot.place_theatre pt ON pl.id = pt.place_id -->
+<!--Join boot.theatre t ON pt.theatre_id = t.id  -->
+<!--JOIN boot.theatre_performance tp ON tp.theatre_id = t.id -->
+<!--JOIN boot.performance pf ON pf.id = tp.performance_id -->
+<!--JOIN boot.schedule sch ON sch.theatre_performance_id = tp.id-->
+<!--&#45;&#45; JOIN boot.seating s ON s.schedule_id = sch.id -->
+<!--JOIN boot.ticket ON ticket.place_theatre_id=pt.id -->
+<!--JOIN boot.client ON client.id = ticket.client_id]]>-->
+<!--    </queryString>-->
+    <parameter name="theatre_name" class="java.lang.String">
+        <defaultValueExpression><![CDATA["Вестник"]]></defaultValueExpression>
+    </parameter>
+    <field name="theatres" class="java.util.List"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="238" splitType="Stretch">
+            <staticText>
+                <reportElement x="260" y="30" width="58" height="22" uuid="fdb299bd-a67d-4115-92af-7e86e648a4e2"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <!--pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"-->
+                    <font fontName="DejaVuSerif" size="16" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
+                </textElement>
+                <text><![CDATA[Билет]]></text>
+            </staticText>
+            <subreport>
+                <reportElement x="-10" y="46" width="230" height="20" uuid="069c5771-d5fa-4d3f-88f2-81eb5104f0bb"/>
+                <subreportParameter name="theatre_name">
+                    <subreportParameterExpression>
+                        <![CDATA[$P{theatre_name}]]></subreportParameterExpression>
+                </subreportParameter>
+                <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{theatres})]]></dataSourceExpression>
+                <subreportExpression><![CDATA["Theatres_subreport.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="125" splitType="Stretch">
+        </band>
+    </detail>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

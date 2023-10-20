@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>theatre</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>theatre</name>
+	<description>theatre</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+
+
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-oauth2-client</artifactId>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.68</version>
+		</dependency>
+
+		<!--Jasper для отчетов -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.20.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.lowagie</groupId>-->
+<!--			<artifactId>itextasian</artifactId>-->
+<!--			<version>1.0</version>-->
+<!--		</dependency>-->
+
+
+<!--		<dependency>-->
+<!--			<groupId>local.jasperFont</groupId>-->
+<!--			<artifactId>local.jasperFont</artifactId>-->
+<!--			<version>1.0</version>-->
+<!--			<scope>system</scope>-->
+<!--&lt;!&ndash;			<systemPath>${basedir}/src/main/resources/reports/fonts-extention.jar</systemPath>&ndash;&gt;-->
+<!--			<systemPath>${basedir}/src/main/resources/reports/fonts-extention.jar</systemPath>-->
+<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
+<!--		<dependency>-->
+<!--			<groupId>net.sf.jasperreports</groupId>-->
+<!--			<artifactId>jasperreports-fonts</artifactId>-->
+<!--			<version>4.0.0</version>-->
+<!--		</dependency>-->
+
+
+		<!-- https://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j -->
+<!--		<dependency>-->
+<!--			<groupId>net.sf.barcode4j</groupId>-->
+<!--			<artifactId>barcode4j</artifactId>-->
+<!--			<version>2.1</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-all &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.xmlgraphics</groupId>-->
+<!--			<artifactId>batik-all</artifactId>-->
+<!--			<version>1.17</version>-->
+<!--			<type>pom</type>-->
+<!--		</dependency>-->
+
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>commons-beanutils</groupId>-->
+<!--			<artifactId>commons-beanutils</artifactId>-->
+<!--			<version>1.4</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/commons-collections/commons-collections &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>commons-collections</groupId>-->
+<!--			<artifactId>commons-collections</artifactId>-->
+<!--			<version>3.2.2</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/commons-digester/commons-digester &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>commons-digester</groupId>-->
+<!--			<artifactId>commons-digester</artifactId>-->
+<!--			<version>1.7</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/commons-logging/commons-logging &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>commons-logging</groupId>-->
+<!--			<artifactId>commons-logging</artifactId>-->
+<!--			<version>1.0.3</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/com.itextpdf/itextpdf &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.itextpdf</groupId>-->
+<!--			<artifactId>itextpdf</artifactId>-->
+<!--			<version>5.1.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/tomcat/jasper-compiler-jdt &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>tomcat</groupId>-->
+<!--			<artifactId>jasper-compiler-jdt</artifactId>-->
+<!--			<version>5.5.23</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>com.google.zxing</groupId>-->
+<!--			<artifactId>core</artifactId>-->
+<!--			<version>2.2</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/xerces/xercesImpl &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>xerces</groupId>-->
+<!--			<artifactId>xercesImpl</artifactId>-->
+<!--			<version>2.11.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/xml-apis/xml-apis-ext &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>xml-apis</groupId>-->
+<!--			<artifactId>xml-apis-ext</artifactId>-->
+<!--			<version>1.3.04</version>-->
+<!--		</dependency>-->
+
+
+
+		<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>io.micrometer</groupId>-->
+<!--			<artifactId>micrometer-registry-prometheus</artifactId>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>org.flywaydb</groupId>-->
+<!--			<artifactId>flyway-core</artifactId>-->
+<!--			<version>9.4.0</version>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+<!--			<scope>runtime</scope>-->
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+<!--			<version></version>-->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.14</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.flywaydb</groupId>-->
+<!--				<artifactId>flyway-maven-plugin</artifactId>-->
+<!--				<version>9.4.0</version>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash;Разрешить flyway выполнять операцию clean над БД  &ndash;&gt;-->
+<!--					<cleanDisabled>false</cleanDisabled>-->
+
+<!--					<url>jdbc:postgresql://localhost:5432/postgres?currentSchema=boot</url>-->
+<!--					<user>postgres</user>-->
+<!--					<password>123456</password>-->
+<!--					<schemas>-->
+<!--						<schema>boot</schema>-->
+<!--					</schemas>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-shade-plugin</artifactId>-->
+<!--				<version>2.4.3</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>package</phase>-->
+<!--						<goals>-->
+<!--							<goal>shade</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<transformers>-->
+<!--								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+<!--									<resource>jasperreports_extension.properties</resource>-->
+<!--								</transformer>-->
+<!--								<transformer-->
+<!--										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--									<mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>-->
+<!--								</transformer>-->
+<!--								<transformer-->
+<!--										implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+<!--									<resource>META-INF/spring.handlers</resource>-->
+<!--								</transformer>-->
+<!--								<transformer-->
+<!--										implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+<!--									<resource>META-INF/spring.schemas</resource>-->
+<!--								</transformer>-->
+<!--							</transformers>-->
+<!--							<filters>-->
+<!--								<filter>-->
+<!--									<artifact>junit:junit</artifact>-->
+<!--									<includes>-->
+<!--										<include>junit/framework/**</include>-->
+<!--										<include>org/junit/**</include>-->
+<!--									</includes>-->
+<!--									<excludes>-->
+<!--										<exclude>org/junit/experimental/**</exclude>-->
+<!--										<exclude>org/junit/runners/**</exclude>-->
+<!--									</excludes>-->
+<!--								</filter>-->
+<!--								<filter>-->
+<!--									<artifact>*:*</artifact>-->
+<!--									<excludes>-->
+<!--										<exclude>META-INF/*.SF</exclude>-->
+<!--										<exclude>META-INF/*.DSA</exclude>-->
+<!--										<exclude>META-INF/*.RSA</exclude>-->
+<!--									</excludes>-->
+<!--								</filter>-->
+<!--							</filters>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+		</plugins>
+	</build>
+
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>spring-milestones</id>-->
+<!--			<name>Spring Milestones</name>-->
+<!--			<url>https://repo.spring.io/milestone</url>-->
+<!--		</repository>-->
+<!--		<repository>-->
+<!--			<id>central</id>-->
+<!--			<name>Maven Central</name>-->
+<!--			<url>https://repo.maven.apache.org/maven2</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+</project>

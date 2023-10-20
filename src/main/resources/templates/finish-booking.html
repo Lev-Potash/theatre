@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+<p th:text="#{booking_success}"></p>
+<a th:href="@{/registration}" th:text="#{back_to_booking_page}"></a>
+
+<div class="card">
+  <form th:action="@{/registration/report}" method="post" class="form-control">
+<!--    <div class="date-control">-->
+<!--      <input type="date" th:name="date">-->
+
+<!--    </div>-->
+    <div class="file-type-control">
+      <select th:name="fileFormat">
+        <option th:value="pdf" th:text="PDF"></option>
+
+      </select>
+
+    </div>
+    <div class="generate-btn">
+      <input type="submit" class="btn-primary" value="generate report">
+
+    </div>
+
+  </form>
+</div>
+
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

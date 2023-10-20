@@ -1,0 +1,8 @@
+#scrape_configs:
+#  - job_name: 'sample_monitoring'
+##    каждые 5с он ходит на эндпоинт '/actuator/prometheus' и по след. маршруту 'host.docker.internal:8080'
+#    scrape_interval: 5s
+#    metrics_path: '/actuator/prometheus'
+#    static_configs:
+##    это вннешний адрес машины. Это сделано чтобы из контейнера достучаться до хоста.
+#      - targets: ['host.docker.internal:8080']

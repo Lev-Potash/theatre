@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance date</title>
+</head>
+<body>
+<form th:action="@{/registration/performance-date}"
+      th:object="${schedule}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="performance">Выберете дату спектакля</label>
+            <select class="form-control selectpicker" th:field="*{performanceDate}" id="performance">
+                <option value="">Nothing selected</option>
+                <option th:each="performanceDate : ${performanceDates}"
+                        th:value="${performanceDate}"
+                        th:text="${performanceDate}">дата
+                </option>
+            </select>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('performanceDate')}"
+                  th:errors="*{performanceDate}">performanceDate Error</span>
+        </div>
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Выбрать</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

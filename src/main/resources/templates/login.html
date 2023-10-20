@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Вход в аккаунт</h1>
+<div th:if="${error}">
+    Неверное имя пользователя или пароль.<br/>
+    Проверьте правильность имени пользователя или пароля.<br/>
+</div>
+<p>Еще не регистрировался? Нажми
+    <a th:href="@{/register}">сюда</a>, чтобы зарегистрироваться.</p>
+<!--<p><a th:href="@{https://oauth.vk.com/authorize}">Войти через Вконтакте</a>.</p>-->
+<form method="POST" th:action="@{/login}" id="loginForm">
+    <label for="username">Имя пользователя: </label>
+    <input type="text" name="username" id="username" /><br/>
+
+    <label for="password">Пароль: </label>
+    <input type="password" name="password" id="password" /><br/>
+
+    <input type="submit" value="Войти"/>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Places</title>
+</head>
+<body>
+<form th:action="@{/registration/theatre-performance}"
+       th:object="${theatrePerformance}" method="post" class="form-horizontal">
+    <div class="form-group" >
+        <label for="theatre">Выберете театр</label>
+        <select class="form-control selectpicker" th:field="*{theatre}" id="theatre">
+            <option value=""></option>
+            <option th:each="theatre : ${theatres}"
+                    th:value="${theatre.getId()}"
+                    th:text="${theatre.getTheatreName()}">театр
+            </option>
+        </select>
+
+
+    </div>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('theatre')}"
+          th:errors="*{theatre}">theatre Error</span>
+    <div class="form-group">
+        <label for="performance">Выберете спектакль</label>
+        <select class="form-control selectpicker" th:field="*{performance}" id="performance">
+            <option value=""></option>
+            <option th:each="performance : ${performances}"
+                    th:value="${performance.getId()}"
+                    th:text="${performance.getPerformanceName()}">спектакль
+            </option>
+        </select>
+
+    </div>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('performance')}"
+          th:errors="*{performance}">performance Error</span>
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Выбрать</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+</body>
+</html>

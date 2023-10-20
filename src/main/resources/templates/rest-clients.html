@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+<p th:text="#{clients.message}"></p>
+<a th:href="@{/rest-client/post_clients_form}" th:text="#{clients.create}"></a>
+<table>
+  <thead>
+  <tr>
+    <th th:text="#{clients.name}"></th>
+    <th th:text="#{clients.surname}"></th>
+    <th th:text="#{clients.email}"></th>
+    <th th:text="#{clients.change}"></th>
+    <th th:text="#{clients.change2}"></th>
+    <th th:text="#{clients.delete}"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="client: ${clients}">
+    <td th:text="${client.name}"></td>
+    <td th:text="${client.surname}"></td>
+    <td th:text="${client.email}"></td>
+    <td><a th:href="@{/rest-client/put/} + ${client.id}" th:text="#{clients.change}"></a></td>
+    <td><a th:href="@{/rest-client/patch/} + ${client.id}" th:text="#{clients.change2}"></a></td>
+    <td><a th:href="@{/rest-client/delete/} + ${client.id}" th:text="#{clients.delete}"></a></td>
+
+  </tr>
+  </tbody>
+</table>
+
+</body>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

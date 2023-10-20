@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration form</title>
+</head>
+<body>
+registration
+
+<div class="container">
+    <a th:href="@{'/products/?page='+ 0}" th:text="0"></a>
+    <a th:href="@{'/products/?page='+ 1}" th:text="1"></a>
+    <a th:href="@{'/products/?page='+ 2}" th:text="2"></a>
+    <a th:href="@{'/products/?page='+ 3}" th:text="3"></a>
+    <a th:href="@{'/products/?page='+ 4}" th:text="4"></a>
+</div>
+<form th:action="@{/registration}"
+      th:object="${client}" method="post" class="form-horizontal">
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input th:field="*{name}" placeholder="name (*)" class="form-control"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"
+        >
+            name Error
+        </span>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input th:field="*{surname}" placeholder="surname (*)" class="form-control"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('surname')}"
+              th:errors="*{surname}">
+            surname Error
+        </span>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input th:field="*{email}" placeholder="email (*)" class="form-control"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}">email Error</span>
+    </div>
+
+
+<!--    <div style="margin-bottom: 25px" class="input-group">-->
+<!--        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+<!--        <select>-->
+<!--            <option>Пункт 1</option>-->
+<!--            <option>Пункт 2</option>-->
+<!--        </select>-->
+<!--&lt;!&ndash;        <input th:field="*{id}" placeholder="id (*)" class="form-control"/>&ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div style="margin-bottom: 25px" class="input-group">-->
+<!--        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+<!--        <input th:field="*{title}" placeholder="title (*)" class="form-control"/>-->
+<!--    </div>-->
+
+<!--    <div style="margin-bottom: 25px" class="input-group">-->
+<!--        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+<!--        <input th:field="*{price}" placeholder="price (*)" class="form-control"/>-->
+<!--    </div>-->
+
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Далее</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

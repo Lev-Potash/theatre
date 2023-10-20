@@ -1,0 +1,34 @@
+server:
+  port: 8000
+
+spring:
+#  profiles:
+#    active: dev
+  security:
+    oauth2:
+#      resourceserver:
+#        jwt:
+#          # URL сревера авторизации, при обращении к которому можно получить открытый ключ
+#          jwk-set-uri: http://localhost:9000/oauth2/jwks
+      client:
+        provider:
+          theatre:
+            issuer-uri: http://localhost:9000
+            authorization-uri: http://localhost:9000/oauth2/authorize
+            token-uri: http://localhost:9000/oauth2/token
+            jwk-set-uri: http://localhost:9000/oauth2/jwks
+            user-info-uri: http://localhost:9000/oauth2/userinfo
+            user-name-attribute: sub
+        registration:
+          theatre-admin-client:
+            provider: theatre
+            client-id: theatre-admin-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:9090/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - writeClients
+              - deleteClients
+              - updateClients
+
