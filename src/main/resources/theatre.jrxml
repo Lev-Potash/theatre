@@ -21,6 +21,7 @@
         <defaultValueExpression><![CDATA["Вестник"]]></defaultValueExpression>
     </parameter>
     <field name="theatres" class="java.util.List"/>
+    <field name="places" class="java.util.List"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -53,6 +54,11 @@
     </columnHeader>
     <detail>
         <band height="125" splitType="Stretch">
+            <subreport>
+                <reportElement x="-20" y="0" width="140" height="26" uuid="0ee62ec7-4d3a-44b7-a23e-8b139254af9e"/>
+                <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{places})]]></dataSourceExpression>
+                <subreportExpression><![CDATA["Places_subreport.jasper"]]></subreportExpression>
+            </subreport>
         </band>
     </detail>
     <summary>

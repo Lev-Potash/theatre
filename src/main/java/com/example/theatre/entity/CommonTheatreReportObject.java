@@ -14,7 +14,7 @@ public class CommonTheatreReportObject {
 
 //    List<Client> clients;
 //    List<Performance> performances;
-//    List<Place> places;
+    List<Place> places;
 //    List<PlaceTheatre> placeTheatres;
 //    List<Schedule> schedules;
     List<Theatre> theatres;

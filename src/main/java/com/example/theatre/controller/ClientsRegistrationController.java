@@ -478,7 +478,7 @@ public class ClientsRegistrationController {
 
 //        commonTheatreReportObjects.get(0).setClients(clients);
 //        commonTheatreReportObjects.get(0).setPerformances(performances);
-//        commonTheatreReportObjects.get(0).setPlaces(places);
+        commonTheatreReportObjects.get(0).setPlaces(places);
 //        commonTheatreReportObjects.get(0).setPlaceTheatres(placeTheatres);
 //        commonTheatreReportObjects.get(0).setSchedules(schedules);
         commonTheatreReportObjects.get(0).setTheatres(theatres);
@@ -550,6 +550,11 @@ public class ClientsRegistrationController {
         JasperReport jasperSubReport = JasperCompileManager
                 .compileReport(fileTheatresSubReport.getAbsolutePath());
         JRSaver.saveObject(jasperSubReport, "Theatres_subreport.jasper");
+
+        File filePlacesSubReport = ResourceUtils.getFile("classpath:Places_subreport.jrxml");
+        JasperReport jasperSubReportPlaces = JasperCompileManager
+                .compileReport(filePlacesSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportPlaces, "Places_subreport.jasper");
 
 
 
