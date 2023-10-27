@@ -119,8 +119,7 @@ public class ClientsRegistrationController {
     }
 
     @ModelAttribute("theatres")
-    public List<Theatre> theatres()
-    {
+    public List<Theatre> theatres() {
         return theatreService.getTheatres();
     }
 
@@ -183,7 +182,6 @@ public class ClientsRegistrationController {
         theatrePerformanceModel.setTheatre(theatrePerformance.getTheatre());
         theatrePerformanceModel.setPerformance(theatrePerformance.getPerformance());
         log.info("TheatrePerformanceModel: {}", theatrePerformanceModel);
-
 
 
         return "redirect:/registration/performance-date";
@@ -257,17 +255,17 @@ public class ClientsRegistrationController {
             log.info("session is complete");
             return "redirect:/registration";
         }
-            log.info("---");
-            log.info("--- theatre: {}", theatre);
-            log.info("--- Sorted places: " + getAndSortedPlaceById(theatrePerformanceModel,
-                    ticket.getSchedule()));
+        log.info("---");
+        log.info("--- theatre: {}", theatre);
+        log.info("--- Sorted places: " + getAndSortedPlaceById(theatrePerformanceModel,
+                ticket.getSchedule()));
 
-            model.addAttribute("rows", createRowsList(theatrePerformanceModel,
-                    ticket.getSchedule()));
-            model.addAttribute("allPlaces", getAndSortedPlaceById(theatrePerformanceModel,
-                    ticket.getSchedule()));
+        model.addAttribute("rows", createRowsList(theatrePerformanceModel,
+                ticket.getSchedule()));
+        model.addAttribute("allPlaces", getAndSortedPlaceById(theatrePerformanceModel,
+                ticket.getSchedule()));
 //        model.addAttribute("occupiedPlaces", placeService.getOccupiedPlacesByTheatreNameAndPerformanceDate("Вестник", new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()))); /*String.valueOf(new GregorianCalendar(2023,5,11))*/
-            model.addAttribute("simplePlaceObj", new SimplePlaceObj());
+        model.addAttribute("simplePlaceObj", new SimplePlaceObj());
 
         return "places";
     }
@@ -336,10 +334,10 @@ public class ClientsRegistrationController {
         return "redirect:/registration";
     }
 
-    private  int getCountChoosePlacesByList(SimplePlaceObj simplePlaceObjModel) {
+    private int getCountChoosePlacesByList(SimplePlaceObj simplePlaceObjModel) {
         int count = 0;
-        for (Place place:
-             simplePlaceObjModel.getPlaceList()) {
+        for (Place place :
+                simplePlaceObjModel.getPlaceList()) {
             count++;
         }
         return count;
@@ -363,8 +361,8 @@ public class ClientsRegistrationController {
 
     @GetMapping(value = "/ticket-cost")
     public String showTicketCostForm(Model model, @ModelAttribute("theatreModel") Theatre theatre,
-                                 @ModelAttribute("theatrePerformanceModel") TheatrePerformance theatrePerformanceModel,
-                                 @ModelAttribute Ticket ticket) {
+                                     @ModelAttribute("theatrePerformanceModel") TheatrePerformance theatrePerformanceModel,
+                                     @ModelAttribute Ticket ticket) {
 
         log.info("---");
         log.info("--- theatre: {}", theatre);
@@ -390,10 +388,10 @@ public class ClientsRegistrationController {
 
     @PostMapping(value = "/ticket-cost")
     public String processTicketCostRegistration(@ModelAttribute("simplePlaceObjModel") SimplePlaceObj simplePlaceObjModel,
-                                            @ModelAttribute("simpleCountIntObjModel") SimpleCountIntObj simpleCountIntObjModel,
-                                            @ModelAttribute("theatreModel") Theatre theatre,
-                                            @ModelAttribute Ticket ticket,
-                                            SessionStatus sessionStatus) {
+                                                @ModelAttribute("simpleCountIntObjModel") SimpleCountIntObj simpleCountIntObjModel,
+                                                @ModelAttribute("theatreModel") Theatre theatre,
+                                                @ModelAttribute Ticket ticket,
+                                                SessionStatus sessionStatus) {
 
 
         if (!(simplePlaceObjModel.getPlaceList() == null)) {
@@ -442,14 +440,13 @@ public class ClientsRegistrationController {
     }
 
 
-
-
     @PostMapping(value = "/report")
     public String processGetReportForFinishBookingForm(@RequestParam("fileFormat") String fileFormat,
-            @ModelAttribute("theatreModel") Theatre theatreModel,
-            @ModelAttribute("performanceModel") Performance performanceModel,
-            @ModelAttribute("scheduleModel") Schedule scheduleModel,
-            @ModelAttribute Ticket ticket) throws JRException, IOException {
+                                                       @ModelAttribute("theatreModel") Theatre theatreModel,
+                                                       @ModelAttribute("simplePlaceObjModel") SimplePlaceObj simplePlaceObjModel,
+                                                       @ModelAttribute("performanceModel") Performance performanceModel,
+                                                       @ModelAttribute("scheduleModel") Schedule scheduleModel,
+                                                       @ModelAttribute Ticket ticket) throws JRException, IOException {
 
 //        List<CommonTheatreReportObject> commonTheatreReportObjects = new ArrayList<>();
 //        List<Client> clients = clientService.findAllClients();
@@ -463,10 +460,20 @@ public class ClientsRegistrationController {
 
         List<CommonTheatreReportObject> commonTheatreReportObjects = new ArrayList<>();
         List<Client> clients = clientService.findAllClients();
-        List<Performance> performances = performanceService.getPerformanceList();
-        List<Place> places = placeService.getAllPlaces();
+//        List<Performance> performances = performanceService.getPerformanceList();
+        List<Performance> performances = new ArrayList<>();
+        performances.add(new Performance(performanceModel.getPerformanceName()));
+//        List<Place> places = placeService.getAllPlaces();
+        List<Place> places = new ArrayList<>();
+        for (Place place : simplePlaceObjModel.getPlaceList()) {
+            places.add(new Place(place.getRow(), place.getPlace()));
+        }
+
+
         List<PlaceTheatre> placeTheatres = placeTheatreService.getAllPlaceTheatres();
-        List<Schedule> schedules = scheduleService.getAllSchedules();
+//        List<Schedule> schedules = scheduleService.getAllSchedules();
+        List<Schedule> schedules = new ArrayList<>();
+        schedules.add(new Schedule(scheduleModel.getTheatrePerformance(), scheduleModel.getPerformanceDate()));
 
         List<Theatre> theatres = new ArrayList<>();
         theatres.add(new Theatre(theatreModel.getTheatreName()));
@@ -477,10 +484,10 @@ public class ClientsRegistrationController {
         commonTheatreReportObjects.add(new CommonTheatreReportObject());
 
 //        commonTheatreReportObjects.get(0).setClients(clients);
-//        commonTheatreReportObjects.get(0).setPerformances(performances);
+        commonTheatreReportObjects.get(0).setPerformances(performances);
         commonTheatreReportObjects.get(0).setPlaces(places);
 //        commonTheatreReportObjects.get(0).setPlaceTheatres(placeTheatres);
-//        commonTheatreReportObjects.get(0).setSchedules(schedules);
+        commonTheatreReportObjects.get(0).setSchedules(schedules);
         commonTheatreReportObjects.get(0).setTheatres(theatres);
 //        commonTheatreReportObjects.get(0).setTheatrePerformances(theatrePerformances);
 //        commonTheatreReportObjects.get(0).setTickets(tickets);
@@ -495,11 +502,8 @@ public class ClientsRegistrationController {
 
 
         String fileLink = generateReport(commonTheatreReportObjects, parameters, fileFormat);
-        return "redirect:/"+fileLink;
+        return "redirect:/" + fileLink;
     }
-
-
-
 
 
     private JasperPrint getJasperPrint(List<CommonTheatreReportObject> commonTheatreReportObjects,
@@ -532,20 +536,12 @@ public class ClientsRegistrationController {
                     destFileName, parameters, beanColDataSource);*/
 
 
-
-
-
-
-
-
-
-
-        // classpath:theatre.pdf
+        // classpath:theatre.jrxml
         File fileMasterReport = ResourceUtils.getFile(resourceLocationMasterReport);
         JasperReport jasperReport = JasperCompileManager
                 .compileReport(fileMasterReport.getAbsolutePath());
 
-        // classpath:theatre.pdf
+
         File fileTheatresSubReport = ResourceUtils.getFile(resourceLocationTheatresSubreport);
         JasperReport jasperSubReport = JasperCompileManager
                 .compileReport(fileTheatresSubReport.getAbsolutePath());
@@ -556,6 +552,15 @@ public class ClientsRegistrationController {
                 .compileReport(filePlacesSubReport.getAbsolutePath());
         JRSaver.saveObject(jasperSubReportPlaces, "Places_subreport.jasper");
 
+        File filePerformancesSubReport = ResourceUtils.getFile("classpath:Performances_subreport.jrxml");
+        JasperReport jasperSubReportPerformances = JasperCompileManager
+                .compileReport(filePerformancesSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportPerformances, "Performances_subreport.jasper");
+
+        File fileSchedulesSubReport = ResourceUtils.getFile("classpath:Schedules_subreport.jrxml");
+        JasperReport jasperSubReportSchedules = JasperCompileManager
+                .compileReport(fileSchedulesSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportSchedules, "Schedules_subreport.jasper");
 
 
         //todo: написать объект общий для всех сущностей, кроме Seating
@@ -569,27 +574,27 @@ public class ClientsRegistrationController {
 
         // формируем отчет
         JasperPrint jasperPrint = JasperFillManager
-                .fillReport(jasperReport, /*null*/ parameters,dataSource);
+                .fillReport(jasperReport, /*null*/ parameters, dataSource);
 
         return jasperPrint;
     }
 
 
     /*
-    * Этот метод создает указанный каталог, если он не существует.
-    * Он также создает сгенерированный PDF-файл в папке с переданным ему именем файла.
-    * */
+     * Этот метод создает указанный каталог, если он не существует.
+     * Он также создает сгенерированный PDF-файл в папке с переданным ему именем файла.
+     * */
     private Path getUploadPath(String fileFormat, JasperPrint jasperPrint, String fileName) throws IOException, JRException {
         //StringUtils.cleanPath - нормализует путь, подавив такие последовательности,
         // как «путь/..» и внутренние простые точки.
         String uploadDir = StringUtils.cleanPath("./generated-reports");
         Path uploadPath = Paths.get(uploadDir); // создание объекта Path
-        if (!Files.exists(uploadPath)){
+        if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
         //generate the report and save it in the just created folder
-        if (fileFormat.equalsIgnoreCase("pdf")){
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "./"+uploadPath+fileName);
+        if (fileFormat.equalsIgnoreCase("pdf")) {
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "./" + uploadPath + fileName);
         }
 
         return uploadPath;
@@ -597,11 +602,11 @@ public class ClientsRegistrationController {
 
 
     /*
-    * Метод с именем getPdfFileLink() возвращает ссылку на наш сгенерированный отчет.
-    * Этот метод примет путь к файлу, возвращаемый методом getUploadPath(), в качестве строкового аргумента.
-    * */
-    private String getPdfFileLink(String uploadPath){
-        return uploadPath+"/"+"theatre.pdf";
+     * Метод с именем getPdfFileLink() возвращает ссылку на наш сгенерированный отчет.
+     * Этот метод примет путь к файлу, возвращаемый методом getUploadPath(), в качестве строкового аргумента.
+     * */
+    private String getPdfFileLink(String uploadPath) {
+        return uploadPath + "/" + "theatre.pdf";
     }
 
 
@@ -617,28 +622,12 @@ public class ClientsRegistrationController {
         JasperPrint jasperPrint = getJasperPrint(commonTheatreReportObjects, parameters,
                 resourceLocationMasterReport, resourceLocationTheatresSubreport);
         //create a folder to store the report
-        String fileName = "/"+"theatre.pdf";
+        String fileName = "/" + "theatre.pdf";
         Path uploadPath = getUploadPath(fileFormat, jasperPrint, fileName);
         //create a private method that returns the link to the specific pdf file
 
         return getPdfFileLink(uploadPath.toString());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @ModelAttribute("ticket")

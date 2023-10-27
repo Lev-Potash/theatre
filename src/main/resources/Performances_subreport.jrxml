@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Performances_subreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38f34c2b-5e81-4ff9-81d6-8082832ccfbd">
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="performanceName" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <columnHeader>
+        <band height="21" splitType="Stretch">
+            <staticText>
+                <reportElement x="-19" y="0" width="100" height="20" uuid="5c8cec04-e5d7-4b2a-acd3-0dd5ba0d6f45">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <text><![CDATA[Спектакль]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="21" splitType="Stretch">
+            <textField>
+                <reportElement x="-19" y="1" width="100" height="19" uuid="9e112cba-f3a9-41c4-af66-889a3249e1df">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{performanceName}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

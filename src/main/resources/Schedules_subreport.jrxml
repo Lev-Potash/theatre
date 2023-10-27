@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Schedules_subreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7ecf73d-e604-4649-99aa-10eadea60a90">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+    <queryString language="SQL">
+        <![CDATA[]]>
+    </queryString>
+    <field name="performanceDate" class="java.util.Date"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <columnHeader>
+        <band height="20" splitType="Stretch">
+            <staticText>
+                <reportElement x="-10" y="0" width="100" height="20" uuid="3020ab0f-dd05-425f-abcc-e722d25d5325">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8ca0a3-ecdf-42b3-b8a1-3ae1ef820c11"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <text><![CDATA[Дата Время]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="125" splitType="Stretch">
+            <textField>
+                <reportElement x="-10" y="0" width="100" height="20" uuid="2ec42b8f-f92b-4c63-8747-cacb44c6e76b">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8ca0a3-ecdf-42b3-b8a1-3ae1ef820c11"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{performanceDate}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

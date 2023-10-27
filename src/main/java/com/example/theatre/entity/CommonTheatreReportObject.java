@@ -1,25 +1,20 @@
 package com.example.theatre.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class CommonTheatreReportObject {
 
-//    List<Client> clients;
-//    List<Performance> performances;
+    List<Client> clients;
+    List<Performance> performances;
     List<Place> places;
 //    List<PlaceTheatre> placeTheatres;
-//    List<Schedule> schedules;
+    List<Schedule> schedules;
     List<Theatre> theatres;
 //    List<TheatrePerformance> theatrePerformances;
-//    List<Ticket> tickets;
+    List<Ticket> tickets;
 
 
 
