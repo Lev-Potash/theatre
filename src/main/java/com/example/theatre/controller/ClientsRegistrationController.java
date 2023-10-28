@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @Controller
 @SessionAttributes({"ticket", "theatreModel", "performanceModel",
         "theatrePerformanceModel", "scheduleModel",
-        "simplePlaceObjModel", "simpleCountIntObjModel"})
+        "simplePlaceObjModel", "simpleCountIntObjModel", "simpleTicketObjModel", "simpleTotalSumModel"})
 @RequestMapping("/registration")
 public class ClientsRegistrationController {
 
@@ -391,8 +391,11 @@ public class ClientsRegistrationController {
                                                 @ModelAttribute("simpleCountIntObjModel") SimpleCountIntObj simpleCountIntObjModel,
                                                 @ModelAttribute("theatreModel") Theatre theatre,
                                                 @ModelAttribute Ticket ticket,
+                                                @ModelAttribute("simpleTicketObjModel") SimpleTicketObj simpleTicketObjModel,
+                                                @ModelAttribute("simpleTotalSumModel") SimpleTotalSum simpleTotalSumModel,
                                                 SessionStatus sessionStatus) {
 
+        List<Ticket> ticketListForSavedTicket = new ArrayList<>();
 
         if (!(simplePlaceObjModel.getPlaceList() == null)) {
             log.info("place ids: {}", simplePlaceObjModel);
@@ -417,6 +420,8 @@ public class ClientsRegistrationController {
                     ticketForSaving.setCost(350);
                     log.info("Ticket for saving: {}", ticketForSaving);
                     Ticket savedTicket = ticketService.save(ticketForSaving);
+                    // добавляем все наши сохраненные билеты в список для дальнейшего их использования в переменных сессии
+                    ticketListForSavedTicket.add(savedTicket);
                     log.info("Saved ticket: {}", savedTicket);
 //                    sessionStatus.setComplete(); // сеанс будет очищен
                 } else {
@@ -425,6 +430,16 @@ public class ClientsRegistrationController {
                     break;
                 }
             }
+            // вычисляем сумму всех билетов
+            Integer totalSum = 0;
+            for (Ticket ticketForСalculatedSum : ticketListForSavedTicket) {
+                totalSum += ticketForСalculatedSum.getCost();
+            }
+            simpleTotalSumModel.setTotalSum(totalSum);
+
+            // добавляем все сохраненные билеты в переменную сессии для формирования отчета
+            simpleTicketObjModel.setTicketList(ticketListForSavedTicket);
+
         } else {
             log.error("Don't choose places by place list.");
         }
@@ -446,6 +461,8 @@ public class ClientsRegistrationController {
                                                        @ModelAttribute("simplePlaceObjModel") SimplePlaceObj simplePlaceObjModel,
                                                        @ModelAttribute("performanceModel") Performance performanceModel,
                                                        @ModelAttribute("scheduleModel") Schedule scheduleModel,
+                                                       @ModelAttribute("simpleTicketObjModel") SimpleTicketObj simpleTicketObjModel,
+                                                       @ModelAttribute("simpleTotalSumModel") SimpleTotalSum simpleTotalSumModel,
                                                        @ModelAttribute Ticket ticket) throws JRException, IOException {
 
 //        List<CommonTheatreReportObject> commonTheatreReportObjects = new ArrayList<>();
@@ -459,38 +476,51 @@ public class ClientsRegistrationController {
 //        List<Ticket> tickets = ticketService.getAllTickets();
 
         List<CommonTheatreReportObject> commonTheatreReportObjects = new ArrayList<>();
-        List<Client> clients = clientService.findAllClients();
+//        List<Client> clients = clientService.findAllClients();
+        List<Client> clients = new ArrayList<>();
+        clients.add(ticket.getClient());
 //        List<Performance> performances = performanceService.getPerformanceList();
         List<Performance> performances = new ArrayList<>();
-        performances.add(new Performance(performanceModel.getPerformanceName()));
+
 //        List<Place> places = placeService.getAllPlaces();
+        List<Schedule> schedules = new ArrayList<>();
+
         List<Place> places = new ArrayList<>();
         for (Place place : simplePlaceObjModel.getPlaceList()) {
             places.add(new Place(place.getRow(), place.getPlace()));
+            performances.add(new Performance(performanceModel.getPerformanceName()));
+            schedules.add(new Schedule(scheduleModel.getTheatrePerformance(), scheduleModel.getPerformanceDate()));
         }
 
 
         List<PlaceTheatre> placeTheatres = placeTheatreService.getAllPlaceTheatres();
 //        List<Schedule> schedules = scheduleService.getAllSchedules();
-        List<Schedule> schedules = new ArrayList<>();
-        schedules.add(new Schedule(scheduleModel.getTheatrePerformance(), scheduleModel.getPerformanceDate()));
+
 
         List<Theatre> theatres = new ArrayList<>();
         theatres.add(new Theatre(theatreModel.getTheatreName()));
 
         List<TheatrePerformance> theatrePerformances = theatrePerformanceService.getAllTheatrePerformance();
-        List<Ticket> tickets = ticketService.getAllTickets();
+//        List<Ticket> tickets = ticketService.getAllTickets();
+        List<Ticket> tickets = new ArrayList<>();
+        for (Ticket ticketForInsert : simpleTicketObjModel.getTicketList()) {
+            tickets.add(ticketForInsert);
+        }
+
+        List<SimpleTotalSum> simpleTotalSumList = new ArrayList<>();
+        simpleTotalSumList.add(simpleTotalSumModel);
 
         commonTheatreReportObjects.add(new CommonTheatreReportObject());
 
-//        commonTheatreReportObjects.get(0).setClients(clients);
+        commonTheatreReportObjects.get(0).setClients(clients);
         commonTheatreReportObjects.get(0).setPerformances(performances);
         commonTheatreReportObjects.get(0).setPlaces(places);
 //        commonTheatreReportObjects.get(0).setPlaceTheatres(placeTheatres);
         commonTheatreReportObjects.get(0).setSchedules(schedules);
         commonTheatreReportObjects.get(0).setTheatres(theatres);
 //        commonTheatreReportObjects.get(0).setTheatrePerformances(theatrePerformances);
-//        commonTheatreReportObjects.get(0).setTickets(tickets);
+        commonTheatreReportObjects.get(0).setTickets(tickets);
+        commonTheatreReportObjects.get(0).setSimpleTotalSumList(simpleTotalSumList);
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("theatre_name", theatreModel.getTheatreName());
@@ -561,6 +591,21 @@ public class ClientsRegistrationController {
         JasperReport jasperSubReportSchedules = JasperCompileManager
                 .compileReport(fileSchedulesSubReport.getAbsolutePath());
         JRSaver.saveObject(jasperSubReportSchedules, "Schedules_subreport.jasper");
+
+        File fileTicketsSubReport = ResourceUtils.getFile("classpath:Tickets_subreport.jrxml");
+        JasperReport jasperSubReportTickets = JasperCompileManager
+                .compileReport(fileTicketsSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportTickets, "Tickets_subreport.jasper");
+
+        File fileTotalSumListSubReport = ResourceUtils.getFile("classpath:TotalSumList_subreport.jrxml");
+        JasperReport jasperSubReportTotalSumList = JasperCompileManager
+                .compileReport(fileTotalSumListSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportTotalSumList, "TotalSumList_subreport.jasper");
+
+        File fileClientsSubReport = ResourceUtils.getFile("classpath:Clients_subreport.jrxml");
+        JasperReport jasperSubReportClients = JasperCompileManager
+                .compileReport(fileClientsSubReport.getAbsolutePath());
+        JRSaver.saveObject(jasperSubReportClients, "Clients_subreport.jasper");
 
 
         //todo: написать объект общий для всех сущностей, кроме Seating
@@ -668,6 +713,16 @@ public class ClientsRegistrationController {
     @ModelAttribute("simpleCountIntObjModel")
     public SimpleCountIntObj simpleCountIntObj() {
         return new SimpleCountIntObj();
+    }
+
+    @ModelAttribute("simpleTicketObjModel")
+    public SimpleTicketObj simpleTicketObj() {
+        return new SimpleTicketObj();
+    }
+
+    @ModelAttribute("simpleTotalSumModel")
+    public SimpleTotalSum simpleTotalSum() {
+        return new SimpleTotalSum();
     }
 
 }

@@ -9,7 +9,7 @@
         <band splitType="Stretch"/>
     </background>
     <columnHeader>
-        <band height="21" splitType="Stretch">
+        <band height="20" splitType="Stretch">
             <staticText>
                 <reportElement x="-19" y="0" width="100" height="20" uuid="5c8cec04-e5d7-4b2a-acd3-0dd5ba0d6f45">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
@@ -22,9 +22,9 @@
         </band>
     </columnHeader>
     <detail>
-        <band height="21" splitType="Stretch">
+        <band height="20" splitType="Stretch">
             <textField>
-                <reportElement x="-19" y="1" width="100" height="19" uuid="9e112cba-f3a9-41c4-af66-889a3249e1df">
+                <reportElement x="-19" y="0" width="100" height="20" uuid="9e112cba-f3a9-41c4-af66-889a3249e1df">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">

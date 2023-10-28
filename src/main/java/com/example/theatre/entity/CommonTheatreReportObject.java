@@ -15,7 +15,7 @@ public class CommonTheatreReportObject {
     List<Theatre> theatres;
 //    List<TheatrePerformance> theatrePerformances;
     List<Ticket> tickets;
-
+    List<SimpleTotalSum> simpleTotalSumList;
 
 
 
