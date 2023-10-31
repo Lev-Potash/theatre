@@ -13,5 +13,6 @@ public interface ScheduleService {
                                                                Date performanceDate);
     List<Date> getPerformanceDatesByTheatrePerformance(TheatrePerformance theatrePerformance);
 
+
     List<Schedule> getAllSchedules();
 }

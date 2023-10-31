@@ -56,6 +56,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             return performanceDates.stream().sorted().collect(Collectors.toList());
     }
 
+
     @Override
     public List<Schedule> getAllSchedules() {
         return scheduleRepository.findAll();

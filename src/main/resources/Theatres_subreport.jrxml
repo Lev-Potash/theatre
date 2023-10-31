@@ -38,7 +38,7 @@
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
 <!--                    pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"-->
-                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
+                    <font fontName="DejaVuSerif" size="14" isItalic="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
                 </textElement>
 <!--                <textFieldExpression>-->
 <!--                    <![CDATA[$P{theatre_name}]]>-->

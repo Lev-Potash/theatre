@@ -110,16 +110,17 @@ CREATE TABLE Schedule (
                                      id serial Primary KEY,
                                      theatre_performance_id int NOT NULL,
                                      performance_date date NOT NULL,
+                                     performance_time TEXT NOT NULL,
                                      FOREIGN KEY (theatre_performance_id) REFERENCES Theatre_Performance (id)
 );
 
 
-INSERT into Schedule (theatre_performance_id, performance_date)
-values (1, '2022.07.01'),
-       (2, '2022.07.03'),
-       (2, '2023.06.10'),
-       (1, '2023.06.10'),
-       (2, '2023.06.29');
+INSERT into Schedule (theatre_performance_id, performance_date, performance_time)
+values (1, '2022.07.01', '18:00'),
+       (2, '2022.07.03', '19:00'),
+       (2, '2023.06.10', '19:00'),
+       (1, '2023.06.10', '19:00'),
+       (2, '2023.06.29', '18:00');
 
 
 CREATE TABLE Seating (

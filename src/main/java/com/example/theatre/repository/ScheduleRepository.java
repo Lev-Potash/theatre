@@ -24,4 +24,5 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long>,
 
 //    @Query("select s from Schedule s where s.theatrePerformance = :theatrePerformance")
     List<Schedule> getScheduleByTheatrePerformance(TheatrePerformance theatrePerformance);
+
 }

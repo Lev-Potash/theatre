@@ -121,15 +121,15 @@ public class LoaderConfig {
             log.info("Loader TheatrePerformances: {}", theatrePerformanceRepository.findAll());
             List<Schedule> schedules = new ArrayList<>();
             schedules.add(scheduleRepository.save(new Schedule(
-                    theatrePerformances.get(0), new Date(new GregorianCalendar(2022, 6, 1).getTime().getTime()))));
+                    theatrePerformances.get(0), new Date(new GregorianCalendar(2022, 6, 1).getTime().getTime()) , "18:00")));
             schedules.add(scheduleRepository.save(new Schedule(
-                    theatrePerformances.get(1), new Date(new GregorianCalendar(2022, 6, 3).getTime().getTime()))));
+                    theatrePerformances.get(1), new Date(new GregorianCalendar(2022, 6, 3).getTime().getTime()), "18:00")));
             schedules.add(scheduleRepository.save(new Schedule(
-                    theatrePerformances.get(1), new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()))));
+                    theatrePerformances.get(1), new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()), "19:00")));
             schedules.add(scheduleRepository.save(new Schedule(
-                    theatrePerformances.get(0), new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()))));
+                    theatrePerformances.get(0), new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()), "19:00")));
             schedules.add(scheduleRepository.save(new Schedule(
-                    theatrePerformances.get(1), new Date(new GregorianCalendar(2023, 5, 29).getTime().getTime()))));
+                    theatrePerformances.get(1), new Date(new GregorianCalendar(2023, 5, 29).getTime().getTime()), "19:00")));
             log.info("Loader Schedules: {}", scheduleRepository.findAll());
             List<Seating> seatings = new ArrayList<>();
             seatings.add(seatingRepository.save(new Seating( schedules.get(0), placeTheatres.get(0), false)));

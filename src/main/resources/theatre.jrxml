@@ -65,22 +65,22 @@
     <detail>
         <band height="26" splitType="Stretch">
             <subreport>
-                <reportElement x="157" y="0" width="140" height="26" uuid="0ee62ec7-4d3a-44b7-a23e-8b139254af9e"/>
+                <reportElement x="106" y="0" width="140" height="26" uuid="0ee62ec7-4d3a-44b7-a23e-8b139254af9e"/>
                 <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{places})]]></dataSourceExpression>
                 <subreportExpression><![CDATA["Places_subreport.jasper"]]></subreportExpression>
             </subreport>
             <subreport>
-                <reportElement x="46" y="0" width="111" height="26" uuid="47118e8d-f8da-4685-8079-2883494e2a63"/>
+                <reportElement x="-5" y="0" width="111" height="26" uuid="47118e8d-f8da-4685-8079-2883494e2a63"/>
                 <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{performances})]]></dataSourceExpression>
                 <subreportExpression><![CDATA["Performances_subreport.jasper"]]></subreportExpression>
             </subreport>
             <subreport>
-                <reportElement x="297" y="0" width="93" height="26" uuid="66081321-1ef4-402b-a6c0-ba22293107d6"/>
+                <reportElement x="246" y="0" width="93" height="26" uuid="66081321-1ef4-402b-a6c0-ba22293107d6"/>
                 <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{schedules})]]></dataSourceExpression>
                 <subreportExpression><![CDATA["Schedules_subreport.jasper"]]></subreportExpression>
             </subreport>
             <subreport>
-                <reportElement x="390" y="0" width="100" height="26" uuid="535b5511-195c-41f6-8d59-54e0ea6fa6a6"/>
+                <reportElement x="430" y="0" width="100" height="26" uuid="535b5511-195c-41f6-8d59-54e0ea6fa6a6"/>
                 <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{tickets})]]></dataSourceExpression>
                 <subreportExpression><![CDATA["Tickets_subreport.jasper"]]></subreportExpression>
             </subreport>
@@ -89,7 +89,7 @@
     <summary>
         <band height="42" splitType="Stretch">
             <subreport>
-                <reportElement x="280" y="0" width="200" height="41" uuid="ef6f4ded-391c-4f17-bd1b-dc6ae5183efc"/>
+                <reportElement x="320" y="0" width="200" height="41" uuid="ef6f4ded-391c-4f17-bd1b-dc6ae5183efc"/>
                 <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{simpleTotalSumList}) ]]></dataSourceExpression>
                 <subreportExpression><![CDATA["TotalSumList_subreport.jasper"]]></subreportExpression>
             </subreport>

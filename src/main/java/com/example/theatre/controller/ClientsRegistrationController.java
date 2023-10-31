@@ -233,6 +233,9 @@ public class ClientsRegistrationController {
 
         // add performance date to scheduleModel for use to generated report
         scheduleModel.setPerformanceDate(receivedWithPerformanceDateSchedule.getPerformanceDate());
+        scheduleModel.setPerformanceTime(
+                scheduleService.getScheduleByTheatrePerformanceAndPerformanceDate(theatrePerformanceModel,
+                        receivedWithPerformanceDateSchedule.getPerformanceDate()).getPerformanceTime());
 
 
         log.info("registration Schedule: {}", schedule);
@@ -489,7 +492,8 @@ public class ClientsRegistrationController {
         for (Place place : simplePlaceObjModel.getPlaceList()) {
             places.add(new Place(place.getRow(), place.getPlace()));
             performances.add(new Performance(performanceModel.getPerformanceName()));
-            schedules.add(new Schedule(scheduleModel.getTheatrePerformance(), scheduleModel.getPerformanceDate()));
+            schedules.add(new Schedule(scheduleModel.getTheatrePerformance(), scheduleModel.getPerformanceDate(),
+                    scheduleModel.getPerformanceTime()));
         }
 
 

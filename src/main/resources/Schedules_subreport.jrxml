@@ -7,6 +7,7 @@
         <![CDATA[]]>
     </queryString>
     <field name="performanceDate" class="java.util.Date"/>
+    <field name="performanceTime" class="java.lang.String"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -19,20 +20,44 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
-                <text><![CDATA[Дата Время]]></text>
+                <text><![CDATA[Дата]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="90" y="0" width="100" height="20" uuid="bb96c442-be01-41e4-86c6-6ad17e26a4fc">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8ca0a3-ecdf-42b3-b8a1-3ae1ef820c11"/>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <text><![CDATA[Время]]></text>
             </staticText>
         </band>
     </columnHeader>
     <detail>
         <band height="20" splitType="Stretch">
             <textField>
-                <reportElement x="-10" y="0" width="100" height="20" uuid="2ec42b8f-f92b-4c63-8747-cacb44c6e76b">
+                <reportElement x="10" y="0" width="60" height="20" uuid="2ec42b8f-f92b-4c63-8747-cacb44c6e76b">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8ca0a3-ecdf-42b3-b8a1-3ae1ef820c11"/>
                 </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                </box>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{performanceDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="90" y="0" width="100" height="20" uuid="7a4efca4-fc66-41f4-858b-537f07821bd2">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8ca0a3-ecdf-42b3-b8a1-3ae1ef820c11"/>
+                </reportElement>
+                <box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+                    <pen lineWidth="0.0" lineStyle="Solid"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{performanceTime}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

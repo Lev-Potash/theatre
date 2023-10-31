@@ -31,6 +31,10 @@ public class Schedule {
     @Column(name = "performance_date")
     private Date performanceDate;
 
+//    @DateTimeFormat(pattern = "HH:mm")
+    @Column(name = "performance_time")
+    private String performanceTime;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -41,8 +45,9 @@ public class Schedule {
             orphanRemoval = true)
     private List<Seating> seatings = new ArrayList<>();
 
-    public Schedule(TheatrePerformance theatrePerformance, Date performanceDate) {
+    public Schedule(TheatrePerformance theatrePerformance, Date performanceDate, String performanceTime) {
         this.theatrePerformance = theatrePerformance;
         this.performanceDate = performanceDate;
+        this.performanceTime = performanceTime;
     }
 }
