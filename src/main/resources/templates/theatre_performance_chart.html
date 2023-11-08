@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Places</title>
-</head>
+<head th:replace="fragments :: header"/>
 <body>
+<div th:replace="fragments :: menu"/>
+
 <form th:action="@{/theatre-performance-chart}"
        th:object="${theatrePerformance}" method="post" class="form-horizontal">
     <div class="form-group" >
@@ -48,6 +47,7 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

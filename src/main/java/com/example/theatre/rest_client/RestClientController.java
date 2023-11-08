@@ -44,6 +44,7 @@ public class RestClientController {
     public String getClientsByRestClientForObject(Model model) {
         Client[] clientsArray = getClientsForObject();
         model.addAttribute("clients", Arrays.asList(clientsArray));
+        model.addAttribute("pageTitle", "Получить клиентов из объекта");
         return "rest-clients";
     }
 
@@ -69,6 +70,7 @@ public class RestClientController {
         log.warn("getClientsByRestClientForEntity clientsArray.getHeaders().getDate() {}", clientsArray.getHeaders().getDate());
         log.warn("getClientsByRestClientForEntity clientsArray.hasBody() {}", clientsArray.hasBody());
         model.addAttribute("clients", Arrays.asList(clientsArray.getBody()));
+        model.addAttribute("pageTitle", "Получить клиентов для сущности");
         return "rest-clients";
     }
 
@@ -87,6 +89,7 @@ public class RestClientController {
                                    @PathVariable("clientId") Long clientId) {
         Client client = clientService.findById(clientId).get();
         model.addAttribute("client", client);
+        model.addAttribute("pageTitle", "Изменение клиента");
         return "put-clients-form";
     }
 
@@ -115,6 +118,7 @@ public class RestClientController {
         }
         Client client = clientService.findById(clientId).get();
         model.addAttribute("client", client);
+        model.addAttribute("pageTitle", "Частичное изменение клиента");
         return "patch-clients-form";
     }
 
@@ -161,6 +165,7 @@ public class RestClientController {
     @GetMapping(path = "/post_clients_form")
     public String getPostClientsForm(Model model) {
         model.addAttribute("client", new Client());
+        model.addAttribute("pageTitle", "Создание клиента");
         return "post-clients-form";
     }
 
@@ -181,6 +186,7 @@ public class RestClientController {
     @GetMapping(path = "/get_post_clients_for_object")
     public String getPostClientsForObject(Model model, @ModelAttribute("clientModel") Client clientModel) {
         model.addAttribute("clients", Arrays.asList(clientModel));
+        model.addAttribute("pageTitle", "Показать клиента после создания");
         return "rest-clients";
     }
 

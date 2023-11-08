@@ -102,6 +102,7 @@ public class ClientsRegistrationController {
     public String showRegistrationForm(Model model) {
         Client client = new Client("Alex", "Frolov1", "lex1@ru.ru");
         model.addAttribute("client", client);
+        model.addAttribute("pageTitle", "Регистрация клиента");
         return "registration-client";
     }
 
@@ -149,6 +150,7 @@ public class ClientsRegistrationController {
         model.addAttribute("theatrePerformance", theatre_performance);
         model.addAttribute("theatre", new Theatre());
         model.addAttribute("performance", new Performance());
+        model.addAttribute("pageTitle", "Театр-спектакль");
 
 
         return "theatre_performance";
@@ -210,6 +212,7 @@ public class ClientsRegistrationController {
 //        model.addAttribute("performanceDates",
 //                scheduleService.getPerformanceDatesByTheatrePerformance(theatrePerformance));
         model.addAttribute("schedule", new Schedule());
+        model.addAttribute("pageTitle", "Дата спектакля");
 
         return "performance-date";
     }
@@ -269,6 +272,7 @@ public class ClientsRegistrationController {
                 ticket.getSchedule()));
 //        model.addAttribute("occupiedPlaces", placeService.getOccupiedPlacesByTheatreNameAndPerformanceDate("Вестник", new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()))); /*String.valueOf(new GregorianCalendar(2023,5,11))*/
         model.addAttribute("simplePlaceObj", new SimplePlaceObj());
+        model.addAttribute("pageTitle", "Бронирование мест");
 
         return "places";
     }
@@ -288,7 +292,7 @@ public class ClientsRegistrationController {
                                             @ModelAttribute("theatreModel") Theatre theatre,
                                             @ModelAttribute Ticket ticket,
                                             SessionStatus sessionStatus) {
-        if (!(simplePlaceObj.getPlaceList() == null)) {
+        if (!(simplePlaceObj.getPlaceList().isEmpty())) {
             log.info("place ids: {}", simplePlaceObj);
             // передаем simplePlaceObj simplePlaceObjModel
             simplePlaceObjModel.setPlaceList(simplePlaceObj.getPlaceList());
@@ -296,6 +300,9 @@ public class ClientsRegistrationController {
             int countChooseOccupiedPlaces = getCountChoosePlacesByList(simplePlaceObjModel);
             simpleCountIntObjModel.setCount(countChooseOccupiedPlaces);
             return "redirect:/registration/ticket-cost";
+        } else {
+            return "redirect:/registration/places";
+
         }
 
   /*      if (!(simplePlaceObj.getPlaceList() == null)) {
@@ -334,7 +341,7 @@ public class ClientsRegistrationController {
         }
 */
 
-        return "redirect:/registration";
+//        return "redirect:/registration";
     }
 
     private int getCountChoosePlacesByList(SimplePlaceObj simplePlaceObjModel) {
@@ -384,6 +391,7 @@ public class ClientsRegistrationController {
 //                ticket.getSchedule()));
 ////        model.addAttribute("occupiedPlaces", placeService.getOccupiedPlacesByTheatreNameAndPerformanceDate("Вестник", new Date(new GregorianCalendar(2023, 5, 10).getTime().getTime()))); /*String.valueOf(new GregorianCalendar(2023,5,11))*/
 //        model.addAttribute("simplePlaceObj", new SimplePlaceObj());
+        model.addAttribute("pageTitle", "Стоимость билета");
 
         return "ticket-cost";
     }
@@ -452,7 +460,9 @@ public class ClientsRegistrationController {
 
 
     @GetMapping(value = "/finish_booking")
-    public String showFinishBookingForm() {
+    public String showFinishBookingForm(Model model) {
+
+        model.addAttribute("pageTitle", "Окончание бронирования");
 
         return "finish-booking";
     }

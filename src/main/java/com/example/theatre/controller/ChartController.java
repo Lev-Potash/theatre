@@ -92,7 +92,7 @@ public class ChartController {
         model.addAttribute("theatrePerformance", theatre_performance);
         model.addAttribute("theatre", new Theatre());
         model.addAttribute("performance", new Performance());
-
+        model.addAttribute("pageTitle", "Графики: театр-спектакль");
 
         return "theatre_performance_chart";
     }
@@ -150,6 +150,8 @@ public class ChartController {
 
         String slist = JSON.toJSONString(performanceDateAndCostList);
         model.addAttribute("slist",slist);
+
+        model.addAttribute("pageTitle", "Графики");
 
         return "line_chart";
     }

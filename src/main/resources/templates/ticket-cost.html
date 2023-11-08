@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<head th:replace="fragments :: header"/>
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    &lt;!&ndash; Compiled and minified CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
 
-</head>
+<!--</head>-->
 <body>
+<div th:replace="fragments :: menu"/>
+
 <a th:href="@{/registration/places}" th:text="#{back}"></a>
 <p th:text="#{tickets.count}"></p> <p th:text="${simpleCountIntObjModel.getCount()}"></p>
 <p th:text="#{tickets.cost}"></p> <p th:text="${simpleCountIntObjModel.getCount()*350}"></p>
@@ -18,7 +21,7 @@
       th:object="${simplePlaceObjModel}" method="post" class="form-horizontal">
 
 
-    <div style="margin-top: 10px" class="form-group">
+    <div style="margin-top: 10px" class="form-group ml-5">
         <div class="col-sm-6 controls">
             <button type="submit" class="btn btn-primary">Забронировать</button>
         </div>
@@ -28,6 +31,7 @@
 </body>
 
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </html>
