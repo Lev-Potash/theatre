@@ -132,6 +132,10 @@ public class ChartController {
                                     @ModelAttribute("theatrePerformanceModel") TheatrePerformance theatrePerformanceModel,
                                     @ModelAttribute Ticket ticket) {
 
+        if (theatrePerformanceModel.getPerformance() == null || theatrePerformanceModel.getTheatre() == null) {
+            log.info("session is complete");
+            return "redirect:/theatre-performance-chart";
+        }
 
         List<SimplePerformanceDateAndCost> performanceDateAndCostList = new ArrayList<>();
         for (Date performanceDate : scheduleService.getPerformanceDatesByTheatrePerformance(theatrePerformanceModel)) {
