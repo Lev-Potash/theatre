@@ -8,6 +8,8 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRSaver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
@@ -54,46 +56,64 @@ public class ClientsRegistrationController {
     private TicketService ticketService;
 
     @Autowired
+//    @Qualifier("ticketService")
+    @Lazy
     public void setTicketService(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 
     @Autowired
+//    @Qualifier("placeTheatreService")
+    @Lazy
     public void setPlaceTheatreService(PlaceTheatreService placeTheatreService) {
         this.placeTheatreService = placeTheatreService;
     }
 
     @Autowired
+//    @Qualifier("seatingService")
+    @Lazy
     public void setSeatingService(SeatingService seatingService) {
         this.seatingService = seatingService;
     }
 
     @Autowired
+//    @Qualifier("scheduleService")
+    @Lazy
     public void setScheduleService(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
     }
 
     @Autowired
+//    @Qualifier("theatrePerformanceService")
+    @Lazy
     public void setTheatrePerformanceService(TheatrePerformanceService theatrePerformanceService) {
         this.theatrePerformanceService = theatrePerformanceService;
     }
 
     @Autowired
+//    @Qualifier("placeService")
+    @Lazy
     public void setPlaceService(PlaceService placeService) {
         this.placeService = placeService;
     }
 
     @Autowired
+//    @Qualifier("theatreService")
+    @Lazy
     public void setTheatreService(TheatreServiceImpl theatreService) {
         this.theatreService = theatreService;
     }
 
     @Autowired
+//    @Qualifier("performanceService")
+    @Lazy
     public void setPerformanceService(PerformanceService performanceService) {
         this.performanceService = performanceService;
     }
 
     @Autowired
+//    @Qualifier("clientService")
+    @Lazy
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
     }

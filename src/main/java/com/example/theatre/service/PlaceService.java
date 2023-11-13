@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("placeService")
 public interface PlaceService {
 
     List<Place> getAllPlaces();

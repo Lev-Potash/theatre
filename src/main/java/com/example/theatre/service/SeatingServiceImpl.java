@@ -7,7 +7,7 @@ import com.example.theatre.repository.SeatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("seatingService")
 public class SeatingServiceImpl implements SeatingService {
     SeatingRepository seatingRepository;
 

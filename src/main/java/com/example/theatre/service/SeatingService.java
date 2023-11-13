@@ -5,7 +5,7 @@ import com.example.theatre.entity.Schedule;
 import com.example.theatre.entity.Seating;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("seatingService")
 public interface SeatingService {
     Seating getSeatingByPlaceTheatreAndSchedule(PlaceTheatre placeTheatre, Schedule schedule);
 

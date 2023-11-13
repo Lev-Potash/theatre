@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("performanceService")
 public class PerformanceService {
     private PerformanceRepository performanceRepository;
 

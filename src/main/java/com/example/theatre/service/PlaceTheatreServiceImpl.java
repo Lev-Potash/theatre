@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Slf4j
+//@Service("placeTheatreService")
 @Service
 public class PlaceTheatreServiceImpl implements PlaceTheatreService {
     private PlaceTheatreRepository placeTheatreRepository;

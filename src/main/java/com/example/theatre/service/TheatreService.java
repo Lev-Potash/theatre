@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("theatreService")
 public interface TheatreService {
     public List<Theatre> getTheatres();
 }

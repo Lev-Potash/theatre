@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("scheduleService")
 public interface ScheduleService {
     Schedule getScheduleByTheatrePerformanceAndPerformanceDate(TheatrePerformance theatrePerformance,
                                                                Date performanceDate);

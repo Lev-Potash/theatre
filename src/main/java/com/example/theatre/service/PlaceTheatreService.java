@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("placeTheatreService")
 public interface PlaceTheatreService {
     PlaceTheatre getPlaceTheatreByPlaceAndTheatre(Place place, Theatre theatre);
 

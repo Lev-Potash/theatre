@@ -24,9 +24,18 @@
 <form th:action="@{/registration}"
       th:object="${client}" method="post" class="form-horizontal">
 <!--    style="margin-left:5px; margin-top: 25px"-->
-    <div class="w-25 input-group mt-25 ml-5"  >
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input th:field="*{name}" placeholder="name (*)" class="form-control"/>
+
+<!--    <div class="form-floating mb-3">-->
+<!--        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">-->
+<!--        <label for="floatingInput">Email address</label>-->
+<!--    </div>-->
+    <div class="w-25 mt-25 ml-5"  >
+        <div class="form-floating">
+<!--            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+            <input th:field="*{name}" id="name" placeholder="name (*)" class="form-control"/>
+            <label for="name">Имя</label>
+        </div>
+
         <span class="validationError"
               th:if="${#fields.hasErrors('name')}"
               th:errors="*{name}"
@@ -35,9 +44,13 @@
         </span>
     </div>
 
-    <div class="w-25 input-group mt-25 ml-5">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input th:field="*{surname}" placeholder="surname (*)" class="form-control"/>
+    <div class="w-25 mt-25 ml-5">
+        <div class="form-floating">
+<!--            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+            <input th:field="*{surname}" id="surname" placeholder="surname (*)" class="form-control"/>
+            <label for="surname">Фамилия</label>
+        </div>
+
         <span class="validationError"
               th:if="${#fields.hasErrors('surname')}"
               th:errors="*{surname}">
@@ -45,9 +58,14 @@
         </span>
     </div>
 
-    <div class="w-25 input-group mt-25 ml-5">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-        <input th:field="*{email}" placeholder="email (*)" class="form-control"/>
+    <div class="w-25 mt-25 ml-5">
+        <div class="form-floating">
+
+<!--            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+            <input th:field="*{email}" id="email" placeholder="email (*)" class="form-control"/>
+            <label for="email">Email</label>
+        </div>
+
         <span class="validationError"
               th:if="${#fields.hasErrors('email')}"
               th:errors="*{email}">email Error</span>

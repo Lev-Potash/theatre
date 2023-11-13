@@ -2,6 +2,7 @@ package com.example.theatre.service;
 
 import com.example.theatre.entity.Client;
 import com.example.theatre.repository.ClientRepository;
+import com.example.theatre.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -11,14 +12,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("clientService")
 public class ClientServiceImpl implements ClientService {
 
     ClientRepository clientRepository;
 
+    TicketRepository ticketRepository;
+
     @Autowired
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, TicketRepository ticketRepository) {
         this.clientRepository = clientRepository;
+        this.ticketRepository = ticketRepository;
     }
 
 

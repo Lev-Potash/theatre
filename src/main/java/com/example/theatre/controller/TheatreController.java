@@ -9,8 +9,6 @@ public class TheatreController {
 
     @GetMapping("/")
     public String getHome(Model model) {
-
-        model.addAttribute("classActiveSettings","active");
         return "home";
     }
 

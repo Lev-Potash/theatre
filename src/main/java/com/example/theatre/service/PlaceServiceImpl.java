@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+//@Service("placeService")
 @Service
 public class PlaceServiceImpl implements PlaceService {
     private PlaceRepository placeRepository;

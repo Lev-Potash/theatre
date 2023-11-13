@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("ticketService")
 public class TicketServiceImpl implements TicketService {
 
     TicketRepository ticketRepository;

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("theatreService")
 public class TheatreServiceImpl implements TheatreService {
 
     TheatreRepository theatreRepository;
