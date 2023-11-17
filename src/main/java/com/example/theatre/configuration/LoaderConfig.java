@@ -70,6 +70,9 @@ public class LoaderConfig {
             clients.add(clientRepository.save(new Client("Rex", "Stepanov", "rex@ru.ru")));
             clients.add(clientRepository.save(new Client("Max", "Gorbunov", "gorb@ru.ru")));
             clients.add(clientRepository.save(new Client("Oleg", "Gorin", "ol@ru.ru")));
+            clients.add(clientRepository.save(new Client("Petr", "Mishin", "mishin@ru.ru")));
+            clients.add(clientRepository.save(new Client("Egor", "Roven", "roven@ru.ru")));
+            clients.add(clientRepository.save(new Client("Egor", "Egorski", "egorski@ru.ru")));
             log.info("Loader Class.");
             log.info("Loader Clients: {}", clientRepository.findAll());
             List<Theatre> theatres = new ArrayList<>();

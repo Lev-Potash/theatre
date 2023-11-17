@@ -46,7 +46,7 @@ public class ClientController {
         model.addAttribute("clients", clientPage);
 //        model.addAttribute("pageNumbers", IntStream.range(0, clientPage.getTotalPages()).toArray());
         model.addAttribute("pageNumbers", intRange);
-
+        model.addAttribute("pageTitle", "Страница пагинации");
         return "clients";
     }
 
@@ -56,11 +56,20 @@ public class ClientController {
         if (page + 1 > 5 && page + 1 <= clientPage.getTotalPages()) {
             return IntStream.range(page - 4, page + 1).toArray();
         } else if (page + 1 > clientPage.getTotalPages()) {
-            return IntStream.range(clientPage.getTotalPages() - 5, clientPage.getTotalPages()).toArray();
+            if (clientPage.getTotalPages() > 5) {
+                return IntStream.range(clientPage.getTotalPages() - 5, clientPage.getTotalPages()).toArray();
+            } else {
+                return IntStream.range(0, clientPage.getTotalPages()).toArray();
+            }
         } else {
-            return IntStream.range(0, 5).toArray();
+            if (clientPage.getTotalPages() < 5) {
+                return IntStream.range(0, clientPage.getTotalPages()).toArray();
+            } else {
+                return IntStream.range(0, 5).toArray();
+            }
         }
     }
+
 
     private Pageable getCalculatePage(Integer page, Pageable pageable) {
         log.warn("getCalculatePage page = {}", page);

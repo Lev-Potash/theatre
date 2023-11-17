@@ -4,6 +4,7 @@ import com.example.theatre.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>,
     @Query("select c from Client c " +
             "join fetch Ticket t " +
             "where t.id = :id")
-    Optional<Client> findClientByTicketId(Long id);
+    Optional<Client> findClientByTicketId(@Param("id") Long id);
 
     List<Client> findAll();
 

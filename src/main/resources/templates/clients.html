@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-</head>
+<head th:replace="fragments :: header"/>
 <body>
+<div th:replace="fragments :: menu"/>
 <p th:text="#{clients.message}"></p>
-<table>
+<table class="table table-hover">
     <thead>
     <tr>
         <th th:text="#{clients.name}"></th>
@@ -27,20 +22,33 @@
     </tr>
     </tbody>
 </table>
-<ul th:if="${clients.totalPages > 0}" class="pagination">
-    <li th:class="${clients.number - 1 >= 0} ? waves-effect : disabled"><a th:href="@{/clients(size=${clients.size}, page=${clients.number - 1})}"><i class="material-icons"> < </i></a></li>
-    <li th:each="pageNumber : ${pageNumbers}"
-        th:class="${pageNumber==clients.number} ? active">
-        <a th:href="@{/clients(size=${clients.size}, page=${pageNumber})}"
-           th:text="${pageNumber +1}" />
-    </li>
-    <li th:class="${clients.number + 1 < clients.totalPages} ? waves-effect : disabled"><a th:href="@{/clients(size=${clients.size}, page=${clients.number + 1})}"><i class="material-icons"> > </i></a></li>
+<nav aria-label="Pagination">
+    <ul th:if="${clients.totalPages > 0}" class="pagination justify-content-center">
+        <li class="page-item" th:class="${clients.number - 1 >= 0} ? waves-effect : disabled"><a
+                class="page-link" tabindex="-1" aria-disabled="true"
+                th:href="@{/clients(size=${clients.size}, page=${clients.number - 1})}"><i class="material-icons">
+            < </i></a></li>
+        <li th:each="pageNumber : ${pageNumbers}"
+            class="page-item"
+            th:classappend="${pageNumber==clients.number} ? active">
+            <a th:href="@{/clients(size=${clients.size}, page=${pageNumber})}"
+               class="page-link"
+               th:text="${pageNumber +1}"/>
+        </li>
+        <li class="page-item" th:class="${clients.number + 1 < clients.totalPages} ? waves-effect : disabled"><a
+                class="page-link"
+                th:href="@{/clients(size=${clients.size}, page=${clients.number + 1})}"><i class="material-icons">
+            > </i></a></li>
 
 
-</ul>
+    </ul>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
 
 </html>

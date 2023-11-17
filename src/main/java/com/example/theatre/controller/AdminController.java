@@ -50,6 +50,7 @@ public class AdminController {
 //        model.addAttribute("welcomeMessageMapEN_US", welcomeMessageMapEN_US);
 //        model.addAttribute("welcomeMessageMapEN", welcomeMessageMapEN);
 //        model.addAttribute("welcomeMessageMapRU", welcomeMessageMapRU);
+        model.addAttribute("pageTitle", "Авторизованный пользователь");
         return "admin";
     }
 }
