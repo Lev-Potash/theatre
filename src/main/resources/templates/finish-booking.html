@@ -16,21 +16,22 @@
     <p th:text="#{booking_success}"></p>
     <a th:href="@{/registration}" th:text="#{back_to_booking_page}"></a>
 
-    <div class="card">
-        <form th:action="@{/registration/report}" method="post" class="form-control">
+    <!-- class="card" -->
+    <div class="mr-5">
+        <form th:action="@{/registration/report}" method="post" class="form-horizontal">
             <!--    <div class="date-control">-->
             <!--      <input type="date" th:name="date">-->
 
             <!--    </div>-->
-            <div class="file-type-control">
+
+            <div class="mt-2">
                 <select th:name="fileFormat">
                     <option th:value="pdf" th:text="PDF"></option>
-
                 </select>
-
             </div>
-            <div class="generate-btn">
-                <input type="submit" class="btn-primary" value="generate report">
+
+            <div class="mt-2">
+                <input type="submit" class="btn-primary" th:value="#{generate_report}">
 
             </div>
 

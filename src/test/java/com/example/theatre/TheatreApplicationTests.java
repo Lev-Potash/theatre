@@ -128,7 +128,7 @@ class TheatreApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.view().name("home"))
 				.andExpect(MockMvcResultMatchers.content().string(
-						Matchers.containsString("Welcome to theatre")));
+						Matchers.containsString("Добро пожаловать в театр!")));
 
 
 	}

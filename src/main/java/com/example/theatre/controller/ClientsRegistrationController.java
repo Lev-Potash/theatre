@@ -7,9 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRSaver;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
@@ -20,12 +22,10 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -508,6 +508,7 @@ public class ClientsRegistrationController {
 //        List<TheatrePerformance> theatrePerformances = theatrePerformanceService.getAllTheatrePerformance();
 //        List<Ticket> tickets = ticketService.getAllTickets();
 
+        System.out.println("Создаем commonTheatreReportObjects");
         List<CommonTheatreReportObject> commonTheatreReportObjects = new ArrayList<>();
 //        List<Client> clients = clientService.findAllClients();
         List<Client> clients = new ArrayList<>();
@@ -544,6 +545,8 @@ public class ClientsRegistrationController {
         List<SimpleTotalSum> simpleTotalSumList = new ArrayList<>();
         simpleTotalSumList.add(simpleTotalSumModel);
 
+        System.out.println("Добавляем данные в объект commonTheatreReportObjects");
+
         commonTheatreReportObjects.add(new CommonTheatreReportObject());
 
         commonTheatreReportObjects.get(0).setClients(clients);
@@ -556,6 +559,10 @@ public class ClientsRegistrationController {
         commonTheatreReportObjects.get(0).setTickets(tickets);
         commonTheatreReportObjects.get(0).setSimpleTotalSumList(simpleTotalSumList);
 
+        System.out.println("Добавили данные в объект commonTheatreReportObjects");
+
+        System.out.println("Создаем параметры для использования в отчете");
+
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("theatre_name", theatreModel.getTheatreName());
         parameters.put("performance_name", performanceModel.getPerformanceName());
@@ -564,15 +571,16 @@ public class ClientsRegistrationController {
         parameters.put("surname", ticket.getClient().getSurname());
         parameters.put("email", ticket.getClient().getEmail());
 
-
+        System.out.println("****Процесс получения ссылки на файл. generateReport(commonTheatreReportObjects, parameters, fileFormat)");
         String fileLink = generateReport(commonTheatreReportObjects, parameters, fileFormat);
+        System.out.println("Выполняем редирект на localhost:9090/generated-reports/theatre.pdf");
         return "redirect:/" + fileLink;
     }
 
 
     private JasperPrint getJasperPrint(List<CommonTheatreReportObject> commonTheatreReportObjects,
                                        Map<String, Object> parameters,
-                                       String resourceLocationMasterReport, String resourceLocationTheatresSubreport) throws FileNotFoundException, JRException {
+                                       String resourceLocationMasterReport, String resourceLocationTheatresSubreport) throws IOException, JRException {
 
 
         /*String masterReportFileName = "C://tools/jasperreports-5.0.1/test"
@@ -600,61 +608,169 @@ public class ClientsRegistrationController {
                     destFileName, parameters, beanColDataSource);*/
 
 
-        // classpath:theatre.jrxml
-        File fileMasterReport = ResourceUtils.getFile(resourceLocationMasterReport);
+        System.out.println("Получаем файл classpath:theatre.jrxml");
+        System.out.println("Копируем файл classpath:theatre.jrxml в файл D:\\theatre.jrxml");
+        //Get inu template file
+        Resource classPathResourceTheatre = new ClassPathResource("theatre.jrxml");
+//        Path theatrePath = Paths.get("/theatre.jrxml");
+        File fileMasterReport = Paths.get("/theatre.jrxml").toFile();
+//        File fileMasterReport = new File("D:\\theatre.jrxml");
+        FileUtils.copyInputStreamToFile(classPathResourceTheatre.getInputStream(), fileMasterReport);
+
+   // classpath:theatre.jrxml
+        //File fileMasterReport = ResourceUtils.getFile(resourceLocationMasterReport);
+        System.out.println("Компилируем файл classpath:theatre.jrxml");
         JasperReport jasperReport = JasperCompileManager
                 .compileReport(fileMasterReport.getAbsolutePath());
 
 
-        File fileTheatresSubReport = ResourceUtils.getFile(resourceLocationTheatresSubreport);
+
+        System.out.println("Получаем файл classpath:theatre_subreport.jrxml");
+//        File fileTheatresSubReport = ResourceUtils.getFile(resourceLocationTheatresSubreport);
+        System.out.println("Копируем файл classpath:Theatres_subreport.jrxml в файл D:\\Theatres_subreport.jrxml");
+        //Get inu template file
+        Resource classPathResourceTheatreSubreport = new ClassPathResource("Theatres_subreport.jrxml");
+//        Path theatrePath = Paths.get("/theatre.jrxml");
+        File fileTheatresSubReport = Paths.get("/Theatres_subreport.jrxml").toFile();
+//        File fileTheatresSubReport = new File("D:\\theatre_subreport.jrxml");
+        FileUtils.copyInputStreamToFile(classPathResourceTheatreSubreport.getInputStream(), fileTheatresSubReport);
+
+        System.out.println("Компилируем файл classpath:Theatres_subreport.jrxml");
         JasperReport jasperSubReport = JasperCompileManager
                 .compileReport(fileTheatresSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Theatres_subreport.jasper");
         JRSaver.saveObject(jasperSubReport, "Theatres_subreport.jasper");
 
-        File filePlacesSubReport = ResourceUtils.getFile("classpath:Places_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:Places_subreport.jrxml");
+//        File filePlacesSubReport = ResourceUtils.getFile("classpath:Places_subreport.jrxml");
+        System.out.println("Копируем файл classpath:Places_subreport.jrxml в файл D:\\Places_subreport.jrxml");
+        Resource classPathResourcePlacesSubreport = new ClassPathResource("Places_subreport.jrxml");
+        File filePlacesSubReport = Paths.get("/Places_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourcePlacesSubreport.getInputStream(), filePlacesSubReport);
+
+        System.out.println("Компилируем файл Places_subreport.jrxml");
         JasperReport jasperSubReportPlaces = JasperCompileManager
                 .compileReport(filePlacesSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Places_subreport.jasper");
         JRSaver.saveObject(jasperSubReportPlaces, "Places_subreport.jasper");
 
-        File filePerformancesSubReport = ResourceUtils.getFile("classpath:Performances_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:Performances_subreport.jrxml");
+//        File filePerformancesSubReport = ResourceUtils.getFile("classpath:Performances_subreport.jrxml");
+        System.out.println("Копируем файл classpath:Performances_subreport.jrxml в файл D:\\Performances_subreport.jrxml");
+        Resource classPathResourcePerformancesSubreport = new ClassPathResource("Performances_subreport.jrxml");
+        File filePerformancesSubReport = Paths.get("/Performances_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourcePerformancesSubreport.getInputStream(), filePerformancesSubReport);
+
+        System.out.println("Компилируем файл Performances_subreport.jrxml");
         JasperReport jasperSubReportPerformances = JasperCompileManager
                 .compileReport(filePerformancesSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Performances_subreport.jasper");
         JRSaver.saveObject(jasperSubReportPerformances, "Performances_subreport.jasper");
 
-        File fileSchedulesSubReport = ResourceUtils.getFile("classpath:Schedules_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:Schedules_subreport.jrxml");
+//        File fileSchedulesSubReport = ResourceUtils.getFile("classpath:Schedules_subreport.jrxml");
+        System.out.println("Копируем файл classpath:Schedules_subreport.jrxml в файл D:\\Schedules_subreport.jrxml");
+        Resource classPathResourceSchedulesSubreport = new ClassPathResource("Schedules_subreport.jrxml");
+        File fileSchedulesSubReport = Paths.get("/Schedules_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceSchedulesSubreport.getInputStream(), fileSchedulesSubReport);
+
+        System.out.println("Компилируем файл Schedules_subreport.jrxml");
         JasperReport jasperSubReportSchedules = JasperCompileManager
                 .compileReport(fileSchedulesSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Schedules_subreport.jasper");
         JRSaver.saveObject(jasperSubReportSchedules, "Schedules_subreport.jasper");
 
-        File fileTicketsSubReport = ResourceUtils.getFile("classpath:Tickets_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:Tickets_subreport.jrxml");
+//        File fileTicketsSubReport = ResourceUtils.getFile("classpath:Tickets_subreport.jrxml");
+        System.out.println("Копируем файл classpath:Tickets_subreport.jrxml в файл D:\\Tickets_subreport.jrxml");
+        Resource classPathResourceTicketsSubreport = new ClassPathResource("Tickets_subreport.jrxml");
+        File fileTicketsSubReport = Paths.get("/Tickets_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceTicketsSubreport.getInputStream(), fileTicketsSubReport);
+
+        System.out.println("Компилируем файл Tickets_subreport.jrxml");
         JasperReport jasperSubReportTickets = JasperCompileManager
                 .compileReport(fileTicketsSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Tickets_subreport.jasper");
         JRSaver.saveObject(jasperSubReportTickets, "Tickets_subreport.jasper");
 
-        File fileTotalSumListSubReport = ResourceUtils.getFile("classpath:TotalSumList_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:TotalSumList_subreport.jrxml");
+//        File fileTotalSumListSubReport = ResourceUtils.getFile("classpath:TotalSumList_subreport.jrxml");
+        System.out.println("Копируем файл classpath:TotalSumList_subreport.jrxml в файл D:\\TotalSumList_subreport.jrxml");
+        Resource classPathResourceTotalSumListSubreport = new ClassPathResource("TotalSumList_subreport.jrxml");
+        File fileTotalSumListSubReport = Paths.get("/TotalSumList_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceTotalSumListSubreport.getInputStream(), fileTotalSumListSubReport);
+
+        System.out.println("Компилируем файл TotalSumList_subreport.jrxml");
         JasperReport jasperSubReportTotalSumList = JasperCompileManager
                 .compileReport(fileTotalSumListSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл TotalSumList_subreport.jasper");
         JRSaver.saveObject(jasperSubReportTotalSumList, "TotalSumList_subreport.jasper");
 
-        File fileClientsSubReport = ResourceUtils.getFile("classpath:Clients_subreport.jrxml");
+
+
+        System.out.println("Получаем файл classpath:Clients_subreport.jrxml");
+//        File fileClientsSubReport = ResourceUtils.getFile("classpath:Clients_subreport.jrxml");
+        System.out.println("Копируем файл classpath:Clients_subreport.jrxml в файл D:\\Clients_subreport.jrxml");
+        Resource classPathResourceClientsSubreport = new ClassPathResource("Clients_subreport.jrxml");
+        File fileClientsSubReport = Paths.get("/Clients_subreport.jrxml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceClientsSubreport.getInputStream(), fileClientsSubReport);
+
+        System.out.println("Компилируем файл Clients_subreport.jrxml");
         JasperReport jasperSubReportClients = JasperCompileManager
                 .compileReport(fileClientsSubReport.getAbsolutePath());
+        System.out.println("Сохраняем подотчет в файл Clients_subreport.jasper");
         JRSaver.saveObject(jasperSubReportClients, "Clients_subreport.jasper");
 
 
         //todo: написать объект общий для всех сущностей, кроме Seating
         //todo: записать в commonTheatreReportObjects значения из других сущностей по видео Dynamic Parameters Multiple List Bean Collection Jasper Report | Using JRBeanCollectionDataSource
 
+        System.out.println("Составляем JRBeanCollectionDataSource datasource для отчета");
         // составляем datasource для отчета
         JRBeanCollectionDataSource dataSource = new
                 JRBeanCollectionDataSource(commonTheatreReportObjects);
 //        Map<String, Object> parameters = new HashMap<>();
 //        parameters.put("createdBy","David");
 
+
+        System.out.println("Копируем fonts.xml");
+        Resource classPathResourceFontsXml = new ClassPathResource("/fonts/fonts.xml");
+        File fileFontsXml = Paths.get("C:/fonts/fonts.xml").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceFontsXml.getInputStream(), fileFontsXml);
+
+        System.out.println("Копируем шрифты .ttf");
+        Resource classPathResourceDejaVuSerifTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif.ttf");
+        File fileDejaVuSerifTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif.ttf").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifTtf.getInputStream(), fileDejaVuSerifTtf);
+
+        Resource classPathResourceDejaVuSerifBoldTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-Bold.ttf");
+        File fileDejaVuSerifBoldTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-Bold.ttf").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifBoldTtf.getInputStream(), fileDejaVuSerifBoldTtf);
+
+        Resource classPathResourceDejaVuSerifBoldItalicTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf");
+        File fileDejaVuSerifBoldItalicTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifBoldItalicTtf.getInputStream(), fileDejaVuSerifBoldItalicTtf);
+
+        Resource classPathResourceDejaVuSerifItalicTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-Italic.ttf");
+        File fileDejaVuSerifItalicTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-Italic.ttf").toFile();
+        FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifItalicTtf.getInputStream(), fileDejaVuSerifItalicTtf);
+
+
+        System.out.println("Формируем отчет");
         // формируем отчет
         JasperPrint jasperPrint = JasperFillManager
                 .fillReport(jasperReport, /*null*/ parameters, dataSource);
-
+        System.out.println("Возвращаем сформированный отчет");
         return jasperPrint;
     }
 
@@ -664,19 +780,33 @@ public class ClientsRegistrationController {
      * Он также создает сгенерированный PDF-файл в папке с переданным ему именем файла.
      * */
     private Path getUploadPath(String fileFormat, JasperPrint jasperPrint, String fileName) throws IOException, JRException {
-        //StringUtils.cleanPath - нормализует путь, подавив такие последовательности,
+        //StringUtils.cleanPath - нормализует путь, подставив такие последовательности,
         // как «путь/..» и внутренние простые точки.
-        String uploadDir = StringUtils.cleanPath("./generated-reports");
+        System.out.println("Задаем путь ./generated-reports по которому будет искаться файл");
+        String uploadDirURL = StringUtils.cleanPath("./generated-reports");
+        System.out.println("Получаем путь в Path методом Paths.get(uploadDirURL)");
+        Path uploadURLPath = Paths.get(uploadDirURL);
+//        String uploadDir = StringUtils.cleanPath("D:/generated-reports");
+
+        System.out.println("Задаем путь /generated-reports для создания и генерации pdf файла");
+        String uploadDir = "/generated-reports";
+        System.out.println("Получаем путь в Path методом Paths.get(uploadDir)");
         Path uploadPath = Paths.get(uploadDir); // создание объекта Path
+        System.out.println("Создаем папку /generated-reports если ее нет");
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
         //generate the report and save it in the just created folder
         if (fileFormat.equalsIgnoreCase("pdf")) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "./" + uploadPath + fileName);
+//            JasperExportManager.exportReportToPdfFile(jasperPrint, "./" + uploadPath + fileName);
+        System.out.println("Генерируем отчет в pdf файл и сохраняем его в созданнной папке");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, uploadPath + fileName);
+
         }
 
-        return uploadPath;
+        System.out.println("Возвращаем URL cсылку пути по которому ищем сгенерированный файл");
+//        return uploadPath;
+        return uploadURLPath;
     }
 
 
@@ -694,16 +824,24 @@ public class ClientsRegistrationController {
             Map<String, Object> parameters, String fileFormat) throws JRException, IOException {
 //        List<Product> phoneCollection = productRepository.findAllByCreatedAt(localDate);
 
+        System.out.println("Создаем файлы classpath:theatre.jrxml и classpath:Theatres_subreport.jrxml");
         //load the file and compile it
         String resourceLocationMasterReport = "classpath:theatre.jrxml";
         String resourceLocationTheatresSubreport = "classpath:Theatres_subreport.jrxml";
+
+
+        System.out.println("----Формируем отчет через JasperPrint. getJasperPrint(commonTheatreReportObjects, parameters,\n" +
+                "                resourceLocationMasterReport, resourceLocationTheatresSubreport)");
         // получает сформированный отчет
         JasperPrint jasperPrint = getJasperPrint(commonTheatreReportObjects, parameters,
                 resourceLocationMasterReport, resourceLocationTheatresSubreport);
+        System.out.println("----Создаем папку для хранения отчета /theatre.pdf. getUploadPath(fileFormat, jasperPrint, fileName)");
         //create a folder to store the report
         String fileName = "/" + "theatre.pdf";
         Path uploadPath = getUploadPath(fileFormat, jasperPrint, fileName);
+
         //create a private method that returns the link to the specific pdf file
+        System.out.println("создает метод getPdfFileLink(uploadPath.toString()) котрый возвращает ссылку указывающую на pdf файл /generated-reports/theatre.pdf ");
 
         return getPdfFileLink(uploadPath.toString());
     }

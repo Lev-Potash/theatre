@@ -15,7 +15,7 @@
 <form th:action="@{/registration/places}"
        th:object="${simplePlaceObj}" method="post" class="form-horizontal">
     <div class="form-group ml-5">
-        <label for="theatre">Выберете место</label>
+        <label for="theatre" th:text="#{choose_places}" />
 
         <div th:each="row : ${rows}" id="theatre">
             <span th:text="'Ряд ' + ${row} "/>
@@ -34,7 +34,7 @@
         </div>
         <div style="margin-top: 10px" class="form-group">
             <div class="col-sm-6 controls">
-                <button type="submit" class="btn btn-primary">Выбрать</button>
+                <button type="submit" class="btn btn-primary" th:text="#{choose}" />
             </div>
         </div>
     </div>

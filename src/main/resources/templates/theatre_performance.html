@@ -12,7 +12,7 @@
 <form th:action="@{/registration/theatre-performance}"
        th:object="${theatrePerformance}" method="post" class="form-horizontal">
     <div class="form-group ml-5" >
-        <label for="theatre">Выберете театр</label>
+        <label for="theatre" th:text="#{choose_theatre}" />
         <select class="form-select form-select-sm w-25" th:field="*{theatre}" id="theatre">
             <option value=""></option>
             <option th:each="theatre : ${theatres}"
@@ -27,7 +27,7 @@
           th:if="${#fields.hasErrors('theatre')}"
           th:errors="*{theatre}">theatre Error</span>
     <div class="form-group ml-5">
-        <label for="performance">Выберете спектакль</label>
+        <label for="performance" th:text="#{choose_performance}" />
         <select class="form-select form-select-sm w-25" th:field="*{performance}" id="performance">
             <option value=""></option>
             <option th:each="performance : ${performances}"
@@ -42,7 +42,7 @@
           th:errors="*{performance}">performance Error</span>
     <div style="margin-top: 10px" class="form-group">
         <div class="col-sm-6 controls">
-            <button type="submit" class="btn btn-primary">Выбрать</button>
+            <button type="submit" class="btn btn-primary" th:text="#{choose}" />
         </div>
     </div>
 </form>

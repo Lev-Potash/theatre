@@ -12,9 +12,9 @@
 <form th:action="@{/registration/performance-date}"
       th:object="${schedule}" method="post" class="form-horizontal">
         <div class="form-group ml-5">
-            <label for="performance">Выберете дату спектакля</label>
+            <label for="performance" th:text="#{choose_date}" />
             <select class="form-select form-select-sm w-25" th:field="*{performanceDate}" id="performance">
-                <option value="">Nothing selected</option>
+                <option value=""></option>
                 <option th:each="performanceDate : ${performanceDates}"
                         th:value="${performanceDate}"
                         th:text="${performanceDate}">дата
@@ -26,7 +26,7 @@
         </div>
     <div style="margin-top: 10px" class="form-group">
         <div class="col-sm-6 controls">
-            <button type="submit" class="btn btn-primary">Выбрать</button>
+            <button type="submit" class="btn btn-primary" th:text="#{choose}" />
         </div>
     </div>
 </form>

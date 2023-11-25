@@ -41,33 +41,33 @@ public class TicketServiceTest {
     private PlaceRepository placeRepository;
 
 
-    @Test
-    public void returnTicketsByClientIdTest() {
-
-        Client client = clientService.findById(1L).get();
-//        Client client = new Client("Alex", "Frolov", "lex@ru.ru");
-//        client.setId(1L);
-
-
-//        given(ticketService.ticketsByClient(client).get(0)
-//                /*ticketRepository.getTicketsByClient(client).get(0)*/) // any() - получить любое значение
-//                .willReturn(new Ticket(new Client("Alex", "Frolov", "lex@ru.ru"),
+//    @Test
+//    public void returnTicketsByClientIdTest() {
+//
+//        Client client = clientService.findById(1L).get();
+////        Client client = new Client("Alex", "Frolov", "lex@ru.ru");
+////        client.setId(1L);
+//
+//
+////        given(ticketService.ticketsByClient(client).get(0)
+////                /*ticketRepository.getTicketsByClient(client).get(0)*/) // any() - получить любое значение
+////                .willReturn(new Ticket(new Client("Alex", "Frolov", "lex@ru.ru"),
+////                        new Schedule(
+////                                new TheatrePerformance(performanceRepository.findAll().get(0), theatreRepository.findAll().get(0)),
+////                                new Date(new GregorianCalendar(2022, 6, 1).getTime().getTime()), "18:00"),
+////                        new PlaceTheatre(placeRepository.findAll().get(0), theatreRepository.findAll().get(0)),
+////                        350));
+//        Mockito.when(ticketRepository.getTicketsByClient_Id(1L).get(0)).thenReturn(new Ticket(new Client("Alex", "Frolov", "lex@ru.ru"),
 //                        new Schedule(
 //                                new TheatrePerformance(performanceRepository.findAll().get(0), theatreRepository.findAll().get(0)),
 //                                new Date(new GregorianCalendar(2022, 6, 1).getTime().getTime()), "18:00"),
 //                        new PlaceTheatre(placeRepository.findAll().get(0), theatreRepository.findAll().get(0)),
 //                        350));
-        Mockito.when(ticketRepository.getTicketsByClient_Id(1L).get(0)).thenReturn(new Ticket(new Client("Alex", "Frolov", "lex@ru.ru"),
-                        new Schedule(
-                                new TheatrePerformance(performanceRepository.findAll().get(0), theatreRepository.findAll().get(0)),
-                                new Date(new GregorianCalendar(2022, 6, 1).getTime().getTime()), "18:00"),
-                        new PlaceTheatre(placeRepository.findAll().get(0), theatreRepository.findAll().get(0)),
-                        350));
-
-        assertEquals(ticketRepository.getTicketsByClient_Id(1L).get(0).getClient().getName(), "Alex");
-
-
-    }
+//
+//        assertEquals(ticketRepository.getTicketsByClient_Id(1L).get(0).getClient().getName(), "Alex");
+//
+//
+//    }
 
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();

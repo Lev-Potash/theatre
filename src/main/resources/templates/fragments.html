@@ -12,14 +12,17 @@
     <div th:fragment="menu">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" >Бронирование билетов</a>
+                <a class="navbar-brand" th:text="#{fragments.booking_tickets}" />
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item" th:class="${classActiveSettings}">
-                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/' ? 'active' : ''}" aria-current="page" th:href="@{/}">Главная</a>
+                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/' ? 'active' : ''}"
+                               aria-current="page"
+                               th:href="@{/}"
+                               th:text="#{fragments.main}" />
                         </li>
                         <li class="nav-item" th:class="${classActiveSettings}">
                             <a class="nav-link" th:classappend="${#request.getRequestURI() == '/registration'
@@ -28,22 +31,30 @@
                                 || #request.getRequestURI() == '/registration/places'
                                 || #request.getRequestURI() == '/registration/ticket-cost'
                                 || #request.getRequestURI() == '/registration/finish_booking'
-                            ? 'active' : ''}" th:href="@{/registration}">Бронирование</a>
+                            ? 'active' : ''}" th:href="@{/registration}"
+                               th:text="#{fragments.booking}" />
                         </li>
                         <li class="nav-item" th:class="${classActiveSettings}">
                             <a class="nav-link" th:classappend="${#request.getRequestURI() == '/theatre-performance-chart'
                                 || #request.getRequestURI() == '/theatre-performance-chart'
                                 || #request.getRequestURI() == '/line_chart'
-                            ? 'active' : ''}" th:href="@{/theatre-performance-chart}">Графики</a>
+                            ? 'active' : ''}" th:href="@{/theatre-performance-chart}"
+                            th:text="#{fragments.сharts}" />
+                        </li>
+<!--                        <li class="nav-item" th:class="${classActiveSettings}">-->
+<!--                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/rest-client/get_clients_for_object' ? 'active' : ''}"-->
+<!--                               th:href="@{/rest-client/get_clients_for_object}"-->
+<!--                               th:text="#{fragments.administration}" />-->
+<!--                        </li>-->
+                        <li class="nav-item" th:class="${classActiveSettings}">
+                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/admin' ? 'active' : ''}"
+                               th:href="@{/admin}"
+                               th:text="#{fragments.admin_page}" />
                         </li>
                         <li class="nav-item" th:class="${classActiveSettings}">
-                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/rest-client/get_clients_for_object' ? 'active' : ''}" th:href="@{/rest-client/get_clients_for_object}">Администрирование</a>
-                        </li>
-                        <li class="nav-item" th:class="${classActiveSettings}">
-                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/admin' ? 'active' : ''}" th:href="@{/admin}">Админ</a>
-                        </li>
-                        <li class="nav-item" th:class="${classActiveSettings}">
-                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/clients' ? 'active' : ''}" th:href="@{/clients}">Клиенты</a>
+                            <a class="nav-link" th:classappend="${#request.getRequestURI() == '/clients' ? 'active' : ''}"
+                               th:href="@{/clients}"
+                               th:text="#{fragments.clients}" />
                         </li>
 <!--                        <li class="nav-item dropdown">-->
 <!--                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->

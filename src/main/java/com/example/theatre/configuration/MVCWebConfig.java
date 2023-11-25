@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -30,17 +33,35 @@ public class MVCWebConfig implements WebMvcConfigurer {
      * Передаем абсолютный путь, возвращаемый методом, методу addResourceLocations()
      */
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry)  {
 
-        String reportPath = uploadPath("./generated-reports");
+//        String reportPath = uploadPath("./generated-reports");
+        String reportPath = uploadPath("/generated-reports");
+
+
 
         registry.addResourceHandler("/generated-reports/**")
                 .addResourceLocations("file:/"+reportPath+"/");
+
+        System.out.println("Возвращаем файл по пути /generated-reports/**");
     }
 
     // возвращает абсолютный путь к папке с отчетом
-    private String uploadPath(String directory){
+    private String uploadPath(String directory)  {
         Path uploadDirPath = Paths.get(directory);
+//        if (!Files.exists(uploadDirPath)) {
+//            try {
+//                Files.createDirectories(uploadDirPath);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//        File file = new File("D:\\generated-reports");
+//        if (file.mkdirs()) {
+//            System.out.println("Каталог 'D:/generated-reports' создан");
+//        } else {
+//            System.out.println("Не удалось создать катоалог 'D:/generated-reports'");
+//        }
         return uploadDirPath.toFile().getAbsolutePath();
     }
 
