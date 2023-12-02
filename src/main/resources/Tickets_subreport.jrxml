@@ -18,7 +18,7 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="14" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <text><![CDATA[Цена]]></text>
             </staticText>
@@ -32,7 +32,7 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{cost}]]></textFieldExpression>
             </textField>

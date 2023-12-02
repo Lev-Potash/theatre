@@ -1,3 +1,27 @@
+version: '3.7'
+
+services:
+  theatre:
+
+    image: app/theatre-0.0.1-snapshot
+
+    ports:
+      - "9090:9090"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+
+    networks:
+#      Имя сети
+      default:
+        aliases:
+#         - "localhost"
+#         - "theatre"
+         - "generated-reports"
+
+networks:
+  default:
+    driver: bridge
+
 #version: '3.7'
 ## поднимаем   grafana   и   prometheus
 #services:

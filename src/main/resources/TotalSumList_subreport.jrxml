@@ -16,14 +16,14 @@
             <textField>
                 <reportElement x="120" y="0" width="60" height="30" uuid="397666d7-0ec2-4677-aa35-386ec9b5d446"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="14" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="14" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{totalSum}]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement x="-20" y="0" width="140" height="30" uuid="e3d16080-e20a-47b2-bdb4-0cfc83b5dadd"/>
                 <textElement verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="16" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="16" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <text><![CDATA[Общая сумма:]]></text>
             </staticText>

@@ -745,24 +745,26 @@ public class ClientsRegistrationController {
 
         System.out.println("Копируем fonts.xml");
         Resource classPathResourceFontsXml = new ClassPathResource("/fonts/fonts.xml");
-        File fileFontsXml = Paths.get("C:/fonts/fonts.xml").toFile();
+        File fileFontsXml = Paths.get("/etc/fonts/fonts.xml").toFile();
+
         FileUtils.copyInputStreamToFile(classPathResourceFontsXml.getInputStream(), fileFontsXml);
+        System.out.println ("Path to file fileFontsXml: " + fileFontsXml.getAbsolutePath());
 
         System.out.println("Копируем шрифты .ttf");
         Resource classPathResourceDejaVuSerifTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif.ttf");
-        File fileDejaVuSerifTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif.ttf").toFile();
+        File fileDejaVuSerifTtf = Paths.get("/etc/fonts/dejavuserif/DejaVuSerif.ttf").toFile();
         FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifTtf.getInputStream(), fileDejaVuSerifTtf);
 
         Resource classPathResourceDejaVuSerifBoldTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-Bold.ttf");
-        File fileDejaVuSerifBoldTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-Bold.ttf").toFile();
+        File fileDejaVuSerifBoldTtf = Paths.get("/etc/fonts/dejavuserif/DejaVuSerif-Bold.ttf").toFile();
         FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifBoldTtf.getInputStream(), fileDejaVuSerifBoldTtf);
 
         Resource classPathResourceDejaVuSerifBoldItalicTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf");
-        File fileDejaVuSerifBoldItalicTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf").toFile();
+        File fileDejaVuSerifBoldItalicTtf = Paths.get("/etc/fonts/dejavuserif/DejaVuSerif-BoldItalic.ttf").toFile();
         FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifBoldItalicTtf.getInputStream(), fileDejaVuSerifBoldItalicTtf);
 
         Resource classPathResourceDejaVuSerifItalicTtf = new ClassPathResource("/fonts/dejavuserif/DejaVuSerif-Italic.ttf");
-        File fileDejaVuSerifItalicTtf = Paths.get("C:/fonts/dejavuserif/DejaVuSerif-Italic.ttf").toFile();
+        File fileDejaVuSerifItalicTtf = Paths.get("/etc/fonts/dejavuserif/DejaVuSerif-Italic.ttf").toFile();
         FileUtils.copyInputStreamToFile(classPathResourceDejaVuSerifItalicTtf.getInputStream(), fileDejaVuSerifItalicTtf);
 
 

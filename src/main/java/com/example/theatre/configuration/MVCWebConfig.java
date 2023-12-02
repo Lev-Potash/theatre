@@ -43,6 +43,8 @@ public class MVCWebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/generated-reports/**")
                 .addResourceLocations("file:/"+reportPath+"/");
 
+        System.out.println("Абсолютный путь reportPath: "+ reportPath);
+
         System.out.println("Возвращаем файл по пути /generated-reports/**");
     }
 

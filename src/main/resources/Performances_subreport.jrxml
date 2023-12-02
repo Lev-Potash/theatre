@@ -15,7 +15,7 @@
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="14" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <text><![CDATA[Спектакль]]></text>
             </staticText>
@@ -28,7 +28,7 @@
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77cdd736-e201-4f48-9c1c-43a839e93088"/>
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{performanceName}]]></textFieldExpression>
             </textField>

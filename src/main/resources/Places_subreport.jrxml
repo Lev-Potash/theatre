@@ -14,14 +14,14 @@
             <staticText>
                 <reportElement x="-17" y="0" width="71" height="20" uuid="a928ea54-8ee2-4fe3-97bc-c412baaa126b"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="14" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <text><![CDATA[Ряд]]></text>
             </staticText>
             <staticText>
                 <reportElement x="54" y="0" width="71" height="20" uuid="118a1b5d-b8f9-4739-8533-1277d4d83f9e"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" size="14" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" size="14" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <text><![CDATA[Место]]></text>
             </staticText>
@@ -32,14 +32,14 @@
             <textField>
                 <reportElement x="54" y="0" width="71" height="20" uuid="94d12fcc-5ae6-46b3-9cd6-499d268192d4"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{place}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="-20" y="0" width="74" height="20" uuid="acd7f8be-0917-4580-9286-c34d64624c75"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="DejaVuSerif" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+                    <font fontName="DejaVu Serif" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{row}]]></textFieldExpression>
             </textField>

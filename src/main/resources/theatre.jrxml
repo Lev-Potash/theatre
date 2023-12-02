@@ -36,7 +36,7 @@
                 <reportElement x="260" y="30" width="58" height="22" uuid="fdb299bd-a67d-4115-92af-7e86e648a4e2"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <!--pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"-->
-                    <font fontName="DejaVuSerif" size="16" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
+                    <font fontName="DejaVu Serif" size="16" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
                 </textElement>
                 <text><![CDATA[Билет]]></text>
             </staticText>

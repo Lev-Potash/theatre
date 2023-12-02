@@ -28,7 +28,7 @@
                 <reportElement x="-12" y="1" width="100" height="18" uuid="d3bffb78-d838-4ab4-9c1f-134393154321"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <!--pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"-->
-                    <font fontName="DejaVuSerif" size="12" isBold="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
+                    <font fontName="DejaVu Serif" size="12" isBold="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
                 </textElement>
                 <text><![CDATA[Театр]]></text>
             </staticText>
@@ -38,7 +38,7 @@
                 </reportElement>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
 <!--                    pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true"-->
-                    <font fontName="DejaVuSerif" size="14" isItalic="true" pdfFontName="DejaVuSerif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
+                    <font fontName="DejaVu Serif" size="14" isItalic="true" pdfFontName="DejaVu Serif" pdfEncoding="Identity-H" isPdfEmbedded="true" />
                 </textElement>
 <!--                <textFieldExpression>-->
 <!--                    <![CDATA[$P{theatre_name}]]>-->
