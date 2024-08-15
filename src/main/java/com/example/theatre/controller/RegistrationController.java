@@ -6,9 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Slf4j
 @Controller
@@ -29,14 +32,17 @@ public class RegistrationController {
     }
 
     @GetMapping
-    public String registerForm() {
+    public String registerForm(Model model) {
+        RegistrationForm registrationForm = new RegistrationForm();
+        model.addAttribute("registrationForm", registrationForm);
+        model.addAttribute("pageTitle", "Регистрация пользователя");
         return "registration";
     }
 
     @PostMapping
-    public String processRegistration(RegistrationForm form) {
-        log.info("Username {} Password {}",form.toUser(passwordEncoder).getUsername(), form.toUser(passwordEncoder).getPassword());
-        userRepository.save(form.toUser(passwordEncoder));
+    public String processRegistration(@Valid RegistrationForm registrationForm) {
+        log.info("Username {} Password {}",registrationForm.toUser(passwordEncoder).getUsername(), registrationForm.toUser(passwordEncoder).getPassword());
+        userRepository.save(registrationForm.toUser(passwordEncoder));
         return "redirect:/login";
     }
 }
