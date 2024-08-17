@@ -11,10 +11,10 @@
 <div th:replace="fragments :: menu"/>
 
 <!-- Prepare a defined DOM for Echarts -->
-<div id="main" style="width: 600px;height:400px;"></div>
-<div id="main1" style="width: 600px;height:400px;"></div>
-<div id="main2" style="width: 600px;height:400px;"></div>
-<div id="main3" style="width: 600px;height:400px;"></div>
+<div id="main" style="width: 1000px;height:400px;"></div>
+<div id="main1" style="width: 1000px;height:400px;"></div>
+<div id="main2" style="width: 1000px;height:400px;"></div>
+<div id="main3" style="width: 1000px;height:400px;"></div>
 
 <script type="text/javascript" th:inline="javascript">
   // Get JSON data from the string type of the background
@@ -44,11 +44,13 @@
   // Specify the configuration items and data of the chart
   var option = {
     title: {
-      text: 'Продажи билетов'
+      text: 'Продажи билетов',
+      left: 'center'
     },
     tooltip: {},
     legend: {
-      data: ['Цена билета']
+      data: ['Цена билета'],
+      left: 'left',
     },
     xAxis: {
       data: clientsPerformanceDate
@@ -64,20 +66,20 @@
   };
   option1 = {
     title: {
-      text: 'Продажи билетов (Цена/Дата)',
+      text: 'Продажи билетов',
       left: 'center',
-      top: 'center'
+      top: 'top'
     },
     series: [
       {
         type: 'pie',
         data: clientsObjArray,
-        radius: ['20%', '70%'],
+        radius: ['0%', '70%'],
         itemStyle: {
           normal:{
             label:{
               show: true,
-              formatter: '{b} : {c} ({d}%)'
+              formatter: '{b} : {c} руб. ({d}%)'
             },
             labelLine :{show:true}
           }
@@ -87,13 +89,13 @@
 
     // Nang Dinggel map (rose map)
     ,
-    roseType: 'area'
+    roseType: 'angle' //'area'
   };
 
   option2 = {
     title: {
       text:'Продажи билетов (Цена/Дата)',
-      left: 'left',
+      left: 'center',
       top: 'top'
     },
     xAxis: {
@@ -116,7 +118,7 @@
   option3 = {
     title: {
       text:'Продажи билетов (Цена/Дата)',
-      left: 'left',
+      left: 'center',
       top: 'top'
     },
     xAxis: {

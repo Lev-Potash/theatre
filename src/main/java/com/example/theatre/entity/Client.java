@@ -44,7 +44,9 @@ public class Client {
     private String email;
 
 
-
+// @JsonIgnore позволяет исключить определенное свойство объекта из процесса сериализации.
+// Однако, применение этой аннотации также приводит к исключению свойства из процесса десериализации
+// @ToString.Exclude - исключить поле в методе toString()
     @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL,

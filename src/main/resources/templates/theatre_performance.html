@@ -20,12 +20,11 @@
                     th:text="${theatre.getTheatreName()}">театр
             </option>
         </select>
-
-
     </div>
     <span class="validationError"
           th:if="${#fields.hasErrors('theatre')}"
           th:errors="*{theatre}">theatre Error</span>
+
     <div class="form-group ml-5">
         <label for="performance" th:text="#{choose_performance}" />
         <select class="form-select form-select-sm w-25" th:field="*{performance}" id="performance">

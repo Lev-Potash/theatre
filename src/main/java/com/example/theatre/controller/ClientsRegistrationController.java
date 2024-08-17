@@ -57,6 +57,8 @@ public class ClientsRegistrationController {
 
     @Autowired
 //    @Qualifier("ticketService")
+//это указывает на то, что все компоненты должны загружаться лениво
+// сам бин TicketService не будет создан до тех пор, пока реально не потребуется
     @Lazy
     public void setTicketService(TicketService ticketService) {
         this.ticketService = ticketService;
@@ -196,7 +198,7 @@ public class ClientsRegistrationController {
 
         performanceModel.setPerformanceName(performance.getPerformanceName());
 
-        log.info("@ModelAttribute theatre_: {}", theatreModel);
+        log.info("@ModelAttribute theatreModel: {}", theatreModel);
         log.info("Registration performance: {}", performance);
         TheatrePerformance theatrePerformance = theatrePerformanceService.findTheatrePerformance(theatre, performance);
         log.info("registration TheatrePerformance: {}", theatrePerformance);

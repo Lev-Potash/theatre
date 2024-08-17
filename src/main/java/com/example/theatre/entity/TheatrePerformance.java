@@ -20,14 +20,15 @@ public class TheatrePerformance {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "theatre_id")
+    private Theatre theatre;
+
+    @NotNull
+    @ManyToOne
     @JoinColumn(name = "performance_id")
     private Performance performance;
 
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "theatre_id")
-    private Theatre theatre;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "theatrePerformance", cascade = CascadeType.ALL,
