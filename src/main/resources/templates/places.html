@@ -16,7 +16,8 @@
        th:object="${simplePlaceObj}" method="post" class="form-horizontal">
     <div class="form-group ml-5">
         <label for="theatre" th:text="#{choose_places}" />
-
+<!-- todo: Создать алгоритм получения каждого количества мест в определенном ряде, а затем подставить в алгоритм
+     todo: после rows и сдвинуть ячейки на 10px влево, если число ясеек в следующем ряде больше чем в предыдущем-->
         <div th:each="row : ${rows}" id="theatre">
             <span th:text="'Ряд ' + ${row} "/>
             <span th:each="place: ${allPlaces}">

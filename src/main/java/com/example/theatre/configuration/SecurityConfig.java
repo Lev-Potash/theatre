@@ -15,7 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
+// @EnableWebSecurity используется для включения SpringSecurity в нашем проекте.
+// @EnableGlobalMethodSecurity(prePostEnabled = true) нужна для применения в классах
+// @PreAuthorize, @PostAuthorize, @PreFilter, и @PostFilter
+// авторизовать вызовы методов, включая входные параметры и возвращаемые значения.
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -32,7 +35,7 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
 //        List<UserDetails> usersList = new ArrayList<>();
 //        usersList.add(new User("buzz", encoder.encode("password"),
-//                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")))); // пользователь, пароль и список привелег
+//                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")))); // пользователь, пароль и список привелегий
 //        usersList.add(new User("woody", encoder.encode("password"),
 //                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
 //        return new InMemoryUserDetailsManager(usersList);

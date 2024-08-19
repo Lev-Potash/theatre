@@ -307,6 +307,20 @@ public class ClientsRegistrationController {
         return result;
     }
 
+    private List<Integer> createRowsList(TheatrePerformance theatrePerformance, Schedule schedule) {
+        Set<Integer> rows = new HashSet<>();
+
+        for (Place placeRow :
+                placeService.getAllPlacesByTheatrePerformanceAndSchedule(theatrePerformance, schedule)
+        ) {
+            rows.add(placeRow.getRow());
+        }
+
+        log.info("rows: {}", rows.stream().sorted().collect(Collectors.toList()));
+
+        return rows.stream().sorted().collect(Collectors.toList());
+    }
+
     @PostMapping(value = "/places")
     public String processPlacesRegistration(SimplePlaceObj simplePlaceObj,
                                             @ModelAttribute("simplePlaceObjModel") SimplePlaceObj simplePlaceObjModel,
@@ -375,20 +389,6 @@ public class ClientsRegistrationController {
         return count;
     }
 
-
-    private List<Integer> createRowsList(TheatrePerformance theatrePerformance, Schedule schedule) {
-        Set<Integer> rows = new HashSet<>();
-
-        for (Place placeRow :
-                placeService.getAllPlacesByTheatrePerformanceAndSchedule(theatrePerformance, schedule)
-        ) {
-            rows.add(placeRow.getRow());
-        }
-
-        log.info("rows: {}", rows.stream().sorted().collect(Collectors.toList()));
-
-        return rows.stream().sorted().collect(Collectors.toList());
-    }
 
 
     @GetMapping(value = "/ticket-cost")

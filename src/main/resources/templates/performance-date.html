@@ -12,8 +12,8 @@
 <form th:action="@{/registration/performance-date}"
       th:object="${schedule}" method="post" class="form-horizontal">
         <div class="form-group ml-5">
-            <label for="performance" th:text="#{choose_date}" />
-            <select class="form-select form-select-sm w-25" th:field="*{performanceDate}" id="performance">
+            <label for="performanceDate" th:text="#{choose_date}" />
+            <select class="form-select form-select-sm w-25" th:field="*{performanceDate}" id="performanceDate">
                 <option value=""></option>
                 <option th:each="performanceDate : ${performanceDates}"
                         th:value="${performanceDate}"

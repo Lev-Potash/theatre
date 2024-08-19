@@ -31,6 +31,7 @@ public class AdminController {
         return messageSource.getMessage(key, args, locale);
     }
 
+    // @AuthenticationPrincipal позволяет получить текущего залогиненного пользователя из класса реализации UserDetails
     @GetMapping
     public String adminForm(Model model, @AuthenticationPrincipal User user) {
         String welcomeMessage = messageSource.getMessage("welcome", new Object[] {"John"}, Locale.US);
